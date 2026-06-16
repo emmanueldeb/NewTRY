@@ -52,3 +52,6 @@ Garder ce fichier bref.
 - `scripts/tickseq_v4_time_sanity_sample.py` compare `DurationUS` et
   `GapUsBefore` aux timestamps sur un echantillon borne.
 - La sortie reste un PASS/FAIL technique avec compteurs, sans analyse metier.
+- Chaine temps certifiee sur echantillon `50_000` lignes par source
+  `TICKSEQ_V4` : 0 mismatch `DurationUS`, 0 mismatch `GapUsBefore`.
+  Ce n'est pas une preuve exhaustive sur tout l'historique.
