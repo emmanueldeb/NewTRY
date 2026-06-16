@@ -31,3 +31,10 @@ Garder ce fichier bref.
 - Premier import retenu : socle de mesure `V/R/D/G`.
 - Import limite a un vocabulaire de travail dans `docs/BASE_MESURE.md`.
 - Aucun output, rapport ou chiffre de performance TRY_plan n'est repris.
+
+## 2026-06-16 - Import source TICKSEQ_V4
+
+- `studies/TRY_TickSequenceExport_v4.cpp` est importe comme source Sierra.
+- La copie TRY_plan et la copie `ACS_Source` avaient le meme SHA-256 avant
+  import.
+- Aucun CSV, DLL, rapport ou chiffre TRY_plan n'est importe.

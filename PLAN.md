@@ -48,7 +48,13 @@ Inclus :
 Premier import conceptuel depuis TRY_plan, sans output ni chiffre canonique.
 Detail court : `docs/BASE_MESURE.md`.
 
-### 2.3 Import depuis TRY_plan [PARKING]
+### 2.3 Source tick TICKSEQ_V4 [SOCLE - source importee]
+
+Study Sierra importee comme asset source :
+`studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
+`docs/TICKSEQ_V4.md`.
+
+### 2.4 Import depuis TRY_plan [PARKING]
 
 TRY_plan est une source legacy, pas un depot actif pour NewTRY.
 
@@ -60,7 +66,7 @@ Regle d'import :
 - narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
 - hypotheses : recuperables comme questions, jamais comme resultats.
 
-### 2.4 Branches analytiques [PARKING]
+### 2.5 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 
