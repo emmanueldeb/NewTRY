@@ -113,7 +113,7 @@ def add_domain_fields(row: dict[str, object]) -> dict[str, object]:
     ge_1000 = int(row["gap_ge_1000_count"])
     row["gap_sub_ms_total_share"] = sub_ms / denominator if denominator else np.nan
     row["gap_ge_1000_share"] = ge_1000 / denominator if denominator else np.nan
-    row["time_domain_rule"] = "GapUsBefore >= 1000 us only; 0..999 us remains technical/sub-ms"
+    row["time_domain_rule"] = "GapUsBefore >= 1000 us is elapsed-time eligible; 0..999 us is sub-ms censored"
     return row
 
 
@@ -163,7 +163,16 @@ def main() -> int:
             "input_hashing": "disabled_for_multi_gb_sources",
             "real_time_threshold_us": REAL_TIME_THRESHOLD_US,
             "domain_rule": "Treat GapUsBefore as elapsed time only when GapUsBefore >= 1000 us.",
-            "sub_ms_rule": "GapUsBefore in [0, 999] us is tracked but not treated as real elapsed time.",
+            "sub_ms_rule": (
+                "GapUsBefore in [0, 999] us is tracked as sub-ms/censored; "
+                "it must not be interpreted as zero silence."
+            ),
+            "resolution_floor_rule": "Future respiration analysis must not claim structure below 1 ms.",
+            "known_limit": (
+                "A pure 1000 us threshold assumes intra-ms synthetic counters do not spill above 999 us; "
+                "keep this as a known boundary condition."
+            ),
+            "future_segmentation_rule": "Apply minimum sample-size guards before reporting segmented results.",
         },
     )
     print(f"Wrote {OUTPUT}")

@@ -108,3 +108,14 @@ Garder ce fichier bref.
   analyser la respiration : `-1`, `0`, `1..999 us`, `>=1000 us`.
 - Regle provisoire : `GapUsBefore >= 1000 us` peut etre traite comme temps
   ecoule ; `0..999 us` reste technique/sub-ms.
+
+## 2026-06-17 - Domaine GapUsBefore valide
+
+- Certification reproduite : `54_227_841` lignes, `GapUsBefore = -1`
+  exactement une fois par source, aucun missing/invalide/zero.
+- Domaine sub-ms `1..999 us` : `5_708_692` lignes (`10,53 %`), a traiter
+  comme censure/petit-inconnu, jamais comme silence nul.
+- Domaine temps ecoule `>=1000 us` : `48_519_144` lignes (`89,47 %`).
+- Toute future respiration est limitee a une resolution plancher de 1 ms.
+- Limite connue : un seuil pur a `1000 us` suppose qu'un compteur synthetique
+  intra-ms ne deborde pas au-dela de `999 us`.

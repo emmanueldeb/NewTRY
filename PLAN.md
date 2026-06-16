@@ -38,7 +38,7 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
 - Phase 1 - Tick sans temps (`V`, `R`, `Prints`, `CutReason`) : FAIT.
 - Phase 2 - Clarification V/R : statut de `R=0`, `beta` comme question
   distincte du ratio agrege : FAIT.
-- Phase 3 - Certification du domaine temporel de `GapUsBefore` : EN COURS,
+- Phase 3 - Certification du domaine temporel de `GapUsBefore` : FAIT,
   prerequis a tout usage de `G`.
 - Phase 4 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
@@ -104,11 +104,12 @@ Clarification `beta` evenement par evenement sur `R>0` :
 `scripts/tick_vr_beta_probe_1t2025.py`.
 Output ignore/provenance : `outputs/tick_vr_beta_probe_1t2025.csv`.
 
-### 3.6 Domaine GapUsBefore [ACTIF]
+### 3.6 Domaine GapUsBefore [SOCLE - certifie]
 
 Certification du domaine d'usage de `GapUsBefore` avant toute branche
 respiration / silence. Regle provisoire : `GapUsBefore >= 1000 us` peut etre
-traite comme temps ecoule ; `0..999 us` reste technique/sub-ms.
+traite comme temps ecoule ; `0..999 us` reste sub-ms censure, pas silence nul.
+Toute future respiration reste limitee a une resolution plancher de 1 ms.
 
 Script : `scripts/tickseq_v4_gap_domain_certify.py`.
 Output ignore/provenance : `outputs/tickseq_v4_gap_domain_certify.csv`.
