@@ -43,7 +43,7 @@ Inclus :
 - scanner minimal `scripts/check_time_units.py` ;
 - tests temps dans `tests/`.
 
-### 2.2 Base de mesure V/R/D/G [ACTIF - socle pose]
+### 2.2 Base de mesure V/R/D/G [SOCLE - pose]
 
 Premier import conceptuel depuis TRY_plan, sans output ni chiffre canonique.
 Detail court : `docs/BASE_MESURE.md`.
