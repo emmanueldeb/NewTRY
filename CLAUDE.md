@@ -53,6 +53,9 @@ Eviter l'usine a gaz documentaire.
   calculs explicites `pd.Timedelta`.
 - Ne jamais caster directement une serie datetime via `.astype("int64")` ou
   `.view("int64")`.
+- Ne pas aliaser `DurationUS` en `D` au niveau sequence brute. Hors scripts
+  d'integrite autorises, toute lecture technique de `DurationUS` doit porter
+  le marqueur `# durationus-ok: raison`.
 - Tout output analytique futur doit etre ecrit avec provenance explicite,
   par defaut via `lib/provenance.py::write_csv_with_provenance`.
 

@@ -68,6 +68,8 @@ Garder ce fichier bref.
   plusieurs docs continuaient a traiter `D = DurationUS` comme duree de rafale.
 - NewTRY ajoute un controle complet dedie :
   `scripts/tickseq_v4_duration_prints_certify.py`.
+- `runtime/check_env.cmd` lance aussi `scripts/check_durationus_semantics.py`
+  pour bloquer les futurs alias `DurationUS -> D`.
 - Regle active : tant que `DurationUS == Prints - 1` et `DurationUS < 1000 us`
   sur les sources `TICKSEQ_V4`, `DurationUS` est un span technique intra-ms,
   pas une variable temporelle independante au niveau sequence brute.

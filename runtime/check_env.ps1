@@ -12,6 +12,10 @@ Write-Host "[NewTRY] check_time_units.py"
 & $RunPython "scripts\check_time_units.py"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+Write-Host "[NewTRY] check_durationus_semantics.py"
+& $RunPython "scripts\check_durationus_semantics.py"
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 Write-Host "[NewTRY] tests/test_time_units.py"
 & $RunPython "tests\test_time_units.py"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

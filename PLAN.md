@@ -42,6 +42,7 @@ Inclus :
 - provenance des outputs dans `lib/provenance.py` ;
 - scanner minimal `scripts/check_time_units.py` ;
 - garde-fou `DurationUS / Prints` pour les sources TICKSEQ_V4 ;
+- scanner semantique `scripts/check_durationus_semantics.py` ;
 - tests temps dans `tests/`.
 
 ### 2.2 Base de mesure V/R/D/G [SOCLE - pose]

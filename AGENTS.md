@@ -18,6 +18,8 @@ Regles pratiques :
 - Utiliser `runtime/run_python.cmd` pour les scripts Python du projet.
 - Lancer `runtime/check_env.cmd` avant tout travail Python dans une nouvelle
   session.
+- Ne pas aliaser `DurationUS` en `D` au niveau sequence brute ; le controle
+  `scripts/check_durationus_semantics.py` doit rester passant.
 - Ne pas importer massivement TRY_plan.
 - Ne pas modifier TRY_plan sauf demande explicite.
 - Un seul agent en ecriture a la fois.
