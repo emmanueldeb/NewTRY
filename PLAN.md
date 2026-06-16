@@ -43,7 +43,12 @@ Inclus :
 - scanner minimal `scripts/check_time_units.py` ;
 - tests temps dans `tests/`.
 
-### 2.2 Import depuis TRY_plan [PARKING]
+### 2.2 Base de mesure V/R/D/G [ACTIF - socle pose]
+
+Premier import conceptuel depuis TRY_plan, sans output ni chiffre canonique.
+Detail court : `docs/BASE_MESURE.md`.
+
+### 2.3 Import depuis TRY_plan [PARKING]
 
 TRY_plan est une source legacy, pas un depot actif pour NewTRY.
 
@@ -55,7 +60,7 @@ Regle d'import :
 - narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
 - hypotheses : recuperables comme questions, jamais comme resultats.
 
-### 2.3 Branches analytiques [PARKING]
+### 2.4 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 

@@ -25,3 +25,9 @@ Garder ce fichier bref.
 - Le wrapper NewTRY pointe sur ce venv avant tout autre Python.
 - `runtime/check_env.cmd` devient la commande commune Claude/Codex avant tout
   travail Python.
+
+## 2026-06-16 - Premier import conceptuel
+
+- Premier import retenu : socle de mesure `V/R/D/G`.
+- Import limite a un vocabulaire de travail dans `docs/BASE_MESURE.md`.
+- Aucun output, rapport ou chiffre de performance TRY_plan n'est repris.
