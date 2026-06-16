@@ -29,9 +29,25 @@ Principes :
   verrouille ;
 - une piste devient canonique NewTRY seulement apres provenance et validation.
 
-## 2. Etat courant
+## 2. Trajectoire indicative
 
-### 2.1 Noyau de confiance [ACTIF - amorcage]
+Cette trajectoire donne l'ordre logique de reconstruction. Elle est revisable :
+elle guide la suite sans remplacer les decisions prises branche par branche.
+
+- Phase 0 - Fondation / garde-fous : FAIT.
+- Phase 1 - Tick sans temps (`V`, `R`, `Prints`, `CutReason`) : EN COURS.
+- Phase 2 - Clarification V/R : statut de `R=0`, `beta` comme question
+  distincte du ratio agrege : A FAIRE.
+- Phase 3 - Certification du domaine temporel de `GapUsBefore` : A FAIRE,
+  prerequis a tout usage de `G`.
+- Phase 4 - Objets temporels composes : PARKING, seule voie ou une vraie
+  duree `D` peut redevenir legitime.
+- Parking - respiration `G->G`, R0/echappement, autres `.cpp`, WVP/clusters :
+  a ouvrir seulement sur demande explicite.
+
+## 3. Etat courant
+
+### 3.1 Noyau de confiance [ACTIF - amorcage]
 
 But : poser les garde-fous avant toute analyse metier.
 
@@ -47,12 +63,12 @@ Inclus :
 - scanner semantique `scripts/check_durationus_semantics.py` ;
 - tests temps dans `tests/`.
 
-### 2.2 Base de mesure V/R/D/G [SOCLE - pose]
+### 3.2 Base de mesure V/R/D/G [SOCLE - pose]
 
 Premier import conceptuel depuis TRY_plan, sans output ni chiffre canonique.
 Detail court : `docs/BASE_MESURE.md`.
 
-### 2.3 Source tick TICKSEQ_V4 [SOCLE - source importee]
+### 3.3 Source tick TICKSEQ_V4 [SOCLE - source importee]
 
 Study Sierra importee comme asset source :
 `studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
@@ -60,7 +76,7 @@ Study Sierra importee comme asset source :
 `data/README.md`. Semantique `DurationUS` controlee par
 `scripts/tickseq_v4_duration_prints_certify.py`.
 
-### 2.4 Import depuis TRY_plan [PARKING]
+### 3.4 Import depuis TRY_plan [PARKING]
 
 TRY_plan est une source legacy, pas un depot actif pour NewTRY.
 
@@ -72,7 +88,7 @@ Regle d'import :
 - narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
 - hypotheses : recuperables comme questions, jamais comme resultats.
 
-### 2.5 Tick sans temps / V-R [ACTIF]
+### 3.5 Tick sans temps / V-R [ACTIF]
 
 Premiere branche analytique canonique. Question limitee : verifier sur une
 seule source TICKSEQ_V4 (`1T2025`) si la relation volume / range merite une
@@ -84,7 +100,7 @@ La masse `R=0` est suivie comme population distincte, pas comme bruit a ignorer.
 Script : `scripts/tick_vr_first_pass_1t2025.py`.
 Output ignore/provenance : `outputs/tick_vr_first_pass_1t2025.csv`.
 
-### 2.6 Branches analytiques [PARKING]
+### 3.6 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 
