@@ -97,3 +97,5 @@ Garder ce fichier bref.
 - Modele descriptif minimal : regression OLS `log(R) ~ log(V)` sur evenements
   `R>0` uniquement.
 - `R=0` reste exclu de la regression et suivi comme population separee.
+- Les coefficients `beta` / `R2` sont masques si `beta_n < 50`, pour eviter
+  qu'un petit groupe ressemble a un resultat exploitable.

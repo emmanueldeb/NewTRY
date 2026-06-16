@@ -14,6 +14,7 @@ SOURCE = Path(r"C:\SierraChart\Data\TRY_TickSequenceExport_NQM26-CME_TICKSEQ_V4_
 OUTPUT = PROJECT_ROOT / "outputs" / "tick_vr_beta_probe_1t2025.csv"
 CHUNK_ROWS = 1_000_000
 USECOLS = ["Volume", "PriceMin", "PriceMax", "TickSize", "CutReason"]
+MIN_BETA_N = 50
 
 
 def empty_state(section: str, group: str) -> dict[str, object]:
@@ -94,17 +95,24 @@ def finalize(states: dict[tuple[str, str], dict[str, object]]) -> pd.DataFrame:
         denominator_y = n * sum_y2 - sum_y * sum_y
         numerator = n * sum_xy - sum_x * sum_y
 
-        if n >= 2 and denominator_x > 0:
+        if n >= MIN_BETA_N and denominator_x > 0:
             beta = numerator / denominator_x
             intercept = (sum_y - beta * sum_x) / n
         else:
             beta = np.nan
             intercept = np.nan
 
-        if n >= 2 and denominator_x > 0 and denominator_y > 0:
+        if n >= MIN_BETA_N and denominator_x > 0 and denominator_y > 0:
             r2 = (numerator * numerator) / (denominator_x * denominator_y)
         else:
             r2 = np.nan
+
+        if n == 0:
+            beta_status = "no_r_positive"
+        elif n < MIN_BETA_N:
+            beta_status = "n_below_min"
+        else:
+            beta_status = "ok"
 
         rows.append(
             {
@@ -122,6 +130,7 @@ def finalize(states: dict[tuple[str, str], dict[str, object]]) -> pd.DataFrame:
                 "volume_sum_r_zero": state["volume_sum_r_zero"],
                 "volume_sum_r_positive": state["volume_sum_r_positive"],
                 "beta_n": n,
+                "beta_status": beta_status,
                 "log_r_on_log_v_beta": beta,
                 "log_r_on_log_v_intercept": intercept,
                 "log_r_on_log_v_r2": r2,
@@ -206,9 +215,11 @@ def main() -> int:
             "input_hashing": "disabled_for_multi_gb_source",
             "chunk_rows": CHUNK_ROWS,
             "columns_read": USECOLS,
+            "min_beta_n": MIN_BETA_N,
             "range_ticks": "round((PriceMax - PriceMin) / TickSize)",
             "r_zero_policy": "R=0 is excluded from log-log beta and tracked as its own population",
             "beta_model": "ordinary least squares slope of log(R) on log(V), events with R>0 only",
+            "beta_status": "beta/r2 are reported only when beta_n >= min_beta_n",
             "scope": "descriptive probe; no trading signal or conclusion",
         },
     )
