@@ -119,3 +119,12 @@ Garder ce fichier bref.
 - Toute future respiration est limitee a une resolution plancher de 1 ms.
 - Limite connue : un seuil pur a `1000 us` suppose qu'un compteur synthetique
   intra-ms ne deborde pas au-dela de `999 us`.
+
+## 2026-06-17 - Premiere passe silence reel
+
+- Premiere utilisation de `G` apres certification : `GapUsBefore >= 1 ms`
+  seulement, sur source unique `TICKSEQ_V4_1T2025`.
+- Le sub-ms `0..999 us` reste censure/petit-inconnu et n'est jamais traite
+  comme silence nul.
+- `scripts/gap_real_first_pass_1t2025.py` produit des buckets descriptifs de
+  gaps reels ; ce n'est pas une analyse de respiration `G->G`.

@@ -40,10 +40,11 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
   distincte du ratio agrege : FAIT.
 - Phase 3 - Certification du domaine temporel de `GapUsBefore` : FAIT,
   prerequis a tout usage de `G`.
-- Phase 4 - Objets temporels composes : PARKING, seule voie ou une vraie
+- Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : EN COURS.
+- Phase 5 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
-- Parking - respiration `G->G`, R0/echappement, autres `.cpp`, WVP/clusters :
-  a ouvrir seulement sur demande explicite.
+- Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
+  WVP/clusters : a ouvrir seulement sur demande explicite.
 
 ## 3. Etat courant
 
@@ -114,7 +115,16 @@ Toute future respiration reste limitee a une resolution plancher de 1 ms.
 Script : `scripts/tickseq_v4_gap_domain_certify.py`.
 Output ignore/provenance : `outputs/tickseq_v4_gap_domain_certify.csv`.
 
-### 3.7 Branches analytiques [PARKING]
+### 3.7 Silence reel simple [ACTIF]
+
+Premiere utilisation de `G` apres certification. Source unique `1T2025`.
+Le sub-ms reste censure ; seuls les gaps `>= 1 ms` entrent dans les buckets de
+temps reel. Pas de sequence `G->G` ni de respiration avancee dans cette passe.
+
+Script : `scripts/gap_real_first_pass_1t2025.py`.
+Output ignore/provenance : `outputs/gap_real_first_pass_1t2025.csv`.
+
+### 3.8 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 
@@ -123,7 +133,7 @@ Candidats issus de TRY_plan :
 - etalons et distributions par tranche ;
 - atypisme / absorption / deplacement ;
 - swings DC et jambes composees ;
-- respiration G->G ;
+- respiration avancee G->G ;
 - R0 / niveaux / echappement ;
 - approche bougie / WVP / clusters.
 
