@@ -35,9 +35,9 @@ Cette trajectoire donne l'ordre logique de reconstruction. Elle est revisable :
 elle guide la suite sans remplacer les decisions prises branche par branche.
 
 - Phase 0 - Fondation / garde-fous : FAIT.
-- Phase 1 - Tick sans temps (`V`, `R`, `Prints`, `CutReason`) : EN COURS.
+- Phase 1 - Tick sans temps (`V`, `R`, `Prints`, `CutReason`) : FAIT.
 - Phase 2 - Clarification V/R : statut de `R=0`, `beta` comme question
-  distincte du ratio agrege : A FAIRE.
+  distincte du ratio agrege : EN COURS.
 - Phase 3 - Certification du domaine temporel de `GapUsBefore` : A FAIRE,
   prerequis a tout usage de `G`.
 - Phase 4 - Objets temporels composes : PARKING, seule voie ou une vraie
@@ -99,6 +99,10 @@ La masse `R=0` est suivie comme population distincte, pas comme bruit a ignorer.
 
 Script : `scripts/tick_vr_first_pass_1t2025.py`.
 Output ignore/provenance : `outputs/tick_vr_first_pass_1t2025.csv`.
+
+Clarification `beta` evenement par evenement sur `R>0` :
+`scripts/tick_vr_beta_probe_1t2025.py`.
+Output ignore/provenance : `outputs/tick_vr_beta_probe_1t2025.csv`.
 
 ### 3.6 Branches analytiques [PARKING]
 

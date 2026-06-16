@@ -89,3 +89,11 @@ Garder ce fichier bref.
   `R>0`, pas un test de `beta` ni de la relation puissance V/R.
 - `R=0` est une population a suivre separement ; toute suite V/R devra dire
   explicitement si elle l'exclut, la segmente ou l'etudie a part.
+
+## 2026-06-16 - Clarification beta V/R
+
+- `scripts/tick_vr_beta_probe_1t2025.py` teste `beta` comme question distincte
+  du ratio agrege.
+- Modele descriptif minimal : regression OLS `log(R) ~ log(V)` sur evenements
+  `R>0` uniquement.
+- `R=0` reste exclu de la regression et suivi comme population separee.
