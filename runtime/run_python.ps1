@@ -91,7 +91,7 @@ if ($env:NEWTRY_PYTHON) {
     $candidates.Add($env:NEWTRY_PYTHON)
 }
 
-$candidates.Add("C:\SierraChart\tools\newtry_python\python.exe")
+$candidates.Add("C:\SierraChart\tools\newtry_python\Scripts\python.exe")
 $candidates.Add("C:\SierraChart\tools\python313\python.exe")
 $candidates.Add("C:\Users\emman\AppData\Local\Programs\Python\Python313\python.exe")
 

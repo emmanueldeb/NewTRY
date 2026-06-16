@@ -16,3 +16,10 @@ Garder ce fichier bref.
   avant toute decision forte.
 - La documentation de depart reste minimale pour eviter l'usine a gaz.
 - Les imports se feront composante par composante, quand ils deviennent utiles.
+
+## 2026-06-16 - Runtime local NewTRY
+
+- Runtime local cree hors depot : `C:\SierraChart\tools\newtry_python`.
+- Verification via `runtime/run_python.cmd` : Python 3.12.13, pandas 2.2.3,
+  numpy 2.2.0, scipy 1.14.1, `pd.to_datetime(...).dtype == datetime64[ns]`.
+- Le wrapper NewTRY pointe sur ce venv avant tout autre Python.

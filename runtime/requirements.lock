@@ -1,5 +1,6 @@
 # Runtime canonique NewTRY.
-# A installer dans un environnement dedie ou a pointer via NEWTRY_PYTHON.
+# Installe localement dans C:\SierraChart\tools\newtry_python.
+# Alternative : pointer NEWTRY_PYTHON vers un runtime equivalent.
 
 pandas==2.2.3
 numpy==2.2.0
