@@ -25,3 +25,7 @@ Verification legere des chemins et en-tetes :
 Verification echantillonnee des unites de temps :
 
 `runtime/run_python.cmd scripts/tickseq_v4_time_sanity_sample.py`
+
+Inventaire complet d'integrite source (lecture chunked) :
+
+`runtime/run_python.cmd scripts/tickseq_v4_source_inventory.py`

@@ -55,3 +55,8 @@ Garder ce fichier bref.
 - Chaine temps certifiee sur echantillon `50_000` lignes par source
   `TICKSEQ_V4` : 0 mismatch `DurationUS`, 0 mismatch `GapUsBefore`.
   Ce n'est pas une preuve exhaustive sur tout l'historique.
+
+## 2026-06-16 - Inventaire complet des sources
+
+- `scripts/tickseq_v4_source_inventory.py` lit les sources en chunks et produit
+  des compteurs d'integrite, sans statistiques de marche.
