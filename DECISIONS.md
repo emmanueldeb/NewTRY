@@ -44,3 +44,5 @@ Garder ce fichier bref.
 - Les CSV bruts `TICKSEQ_V4` de `C:\SierraChart\Data\` sont references dans
   `data/README.md`.
 - Aucun CSV n'est copie ni versionne dans NewTRY.
+- `scripts/check_sources.py` verifie les chemins et en-tetes sans lire les
+  fichiers complets.

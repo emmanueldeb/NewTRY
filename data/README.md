@@ -17,3 +17,7 @@ CSV bruts Sierra references, non copies dans NewTRY :
 
 Regle : ces fichiers sont des sources brutes. Toute sortie analytique NewTRY
 doit etre regeneree avec le runtime verrouille et une provenance explicite.
+
+Verification legere des chemins et en-tetes :
+
+`runtime/run_python.cmd scripts/check_sources.py`
