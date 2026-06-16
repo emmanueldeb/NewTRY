@@ -72,13 +72,21 @@ Regle d'import :
 - narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
 - hypotheses : recuperables comme questions, jamais comme resultats.
 
-### 2.5 Branches analytiques [PARKING]
+### 2.5 Tick sans temps / V-R [ACTIF]
+
+Premiere branche analytique canonique. Question limitee : verifier sur une
+seule source TICKSEQ_V4 (`1T2025`) si la relation volume / range merite une
+branche, sans utiliser `DurationUS`, `GapUsBefore` ni timestamps.
+
+Script : `scripts/tick_vr_first_pass_1t2025.py`.
+Output ignore/provenance : `outputs/tick_vr_first_pass_1t2025.csv`.
+
+### 2.6 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 
 Candidats issus de TRY_plan :
 
-- socle tick V/R/D/G ;
 - etalons et distributions par tranche ;
 - atypisme / absorption / deplacement ;
 - swings DC et jambes composees ;

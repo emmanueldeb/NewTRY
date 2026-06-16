@@ -77,3 +77,11 @@ Garder ce fichier bref.
 - Regle active : tant que `DurationUS == Prints - 1` et `DurationUS < 1000 us`
   sur les sources `TICKSEQ_V4`, `DurationUS` est un span technique intra-ms,
   pas une variable temporelle independante au niveau sequence brute.
+
+## 2026-06-16 - Premiere branche analytique
+
+- Premiere branche ouverte : tick sans temps / V-R.
+- Source unique : `TICKSEQ_V4_1T2025`.
+- Variables autorisees pour cette passe : `Volume`, `Prints`, range en ticks,
+  `CutReason`.
+- `GapUsBefore` reste exclu tant que son domaine temporel n'est pas certifie.
