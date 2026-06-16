@@ -19,6 +19,11 @@ Sierra Chart. Une sequence est fermee par :
 
 Le suffixe CSV par defaut est `TICKSEQ_V4`.
 
+Contrat source verifie par `scripts/check_tickseq_v4_study_contract.py` :
+suffixe `TICKSEQ_V4`, `MaxPauseUS = 1`, horloge microseconde
+`AsMicrosecondsSinceBaseDate`, colonnes `DurationUS`, `GapUsBefore` et
+`CutReason`, usage attendu sur chart `Number of Trades Per Bar = 1`.
+
 ## Colonnes utiles
 
 - `StartDateTime`, `EndDateTime` : timestamps de sequence.

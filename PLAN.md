@@ -41,6 +41,8 @@ Inclus :
 - utilitaires temps dans `lib/time_utils.py` ;
 - provenance des outputs dans `lib/provenance.py` ;
 - scanner minimal `scripts/check_time_units.py` ;
+- contrat study TICKSEQ_V4 verifie par
+  `scripts/check_tickseq_v4_study_contract.py` ;
 - garde-fou `DurationUS / Prints` pour les sources TICKSEQ_V4 ;
 - scanner semantique `scripts/check_durationus_semantics.py` ;
 - tests temps dans `tests/`.

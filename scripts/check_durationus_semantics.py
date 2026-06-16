@@ -10,6 +10,7 @@ SCAN_DIRS = [PROJECT_ROOT / "scripts", PROJECT_ROOT / "lib", PROJECT_ROOT / "tes
 ALLOWLIST = {
     PROJECT_ROOT / "scripts" / "check_durationus_semantics.py",
     PROJECT_ROOT / "scripts" / "check_sources.py",
+    PROJECT_ROOT / "scripts" / "check_tickseq_v4_study_contract.py",
     PROJECT_ROOT / "scripts" / "tickseq_v4_duration_prints_certify.py",
     PROJECT_ROOT / "scripts" / "tickseq_v4_source_inventory.py",
     PROJECT_ROOT / "scripts" / "tickseq_v4_time_sanity_sample.py",

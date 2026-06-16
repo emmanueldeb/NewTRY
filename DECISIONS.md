@@ -72,6 +72,8 @@ Garder ce fichier bref.
   pour bloquer les futurs alias `DurationUS -> D`.
 - Le scanner bloque aussi la reconstruction brute `StartDateTime` /
   `EndDateTime` en duree de sequence sans justification explicite.
+- `scripts/check_tickseq_v4_study_contract.py` verifie que la study source
+  reste sur le contrat attendu, notamment `MaxPauseUS = 1`.
 - Regle active : tant que `DurationUS == Prints - 1` et `DurationUS < 1000 us`
   sur les sources `TICKSEQ_V4`, `DurationUS` est un span technique intra-ms,
   pas une variable temporelle independante au niveau sequence brute.
