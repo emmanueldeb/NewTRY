@@ -1,0 +1,72 @@
+# PLAN - NewTRY
+
+> Porte d'entree minimale. Ce fichier doit rester court. Il sert a savoir ou
+> en est NewTRY sans reconstruire toute l'histoire de TRY_plan.
+
+## 0. Regle de lecture
+
+Au demarrage d'une session, lire :
+
+- `PLAN.md`
+- `CLAUDE.md` ou `AGENTS.md`
+- `docs/COLLABORATION_NOTES.md`
+
+Ne pas charger les documents de TRY_plan par defaut. Les consulter seulement
+pour une composante precise.
+
+## 1. Objectif
+
+Reconstruire, de facon progressive et controlable, le travail utile de TRY_plan
+sans importer son entropie documentaire ni ses outputs suspects.
+
+Principes :
+
+- variables directes uniquement : prix, volume, range, duree, gap, delta, VAP,
+  zones, clusters ;
+- pas d'indicateurs derives dans la base de variables ;
+- simplisme prefere ; complexite acceptee seulement si justifiee et maitrisee ;
+- aucune conclusion temporelle importee sans regeneration sous runtime
+  verrouille ;
+- une piste devient canonique NewTRY seulement apres provenance et validation.
+
+## 2. Etat courant
+
+### 2.1 Noyau de confiance [ACTIF - amorcage]
+
+But : poser les garde-fous avant toute analyse metier.
+
+Inclus :
+
+- runtime Python verrouille via `runtime/run_python.cmd` ;
+- utilitaires temps dans `lib/time_utils.py` ;
+- provenance des outputs dans `lib/provenance.py` ;
+- scanner minimal `scripts/check_time_units.py` ;
+- tests temps dans `tests/`.
+
+### 2.2 Import depuis TRY_plan [PARKING]
+
+TRY_plan est une source legacy, pas un depot actif pour NewTRY.
+
+Regle d'import :
+
+- `.cpp` Sierra : import apres verification ponctuelle ;
+- scripts Python : audit ou reecriture avant usage ;
+- CSV/rapports numeriques : regeneration obligatoire ;
+- narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
+- hypotheses : recuperables comme questions, jamais comme resultats.
+
+### 2.3 Branches analytiques [PARKING]
+
+A ouvrir seulement une par une, quand l'utilisateur le demande.
+
+Candidats issus de TRY_plan :
+
+- socle tick V/R/D/G ;
+- etalons et distributions par tranche ;
+- atypisme / absorption / deplacement ;
+- swings DC et jambes composees ;
+- respiration G->G ;
+- R0 / niveaux / echappement ;
+- approche bougie / WVP / clusters.
+
+Pas de fichier de branche detaille tant qu'une branche n'est pas activee.
