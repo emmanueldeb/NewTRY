@@ -21,3 +21,7 @@ doit etre regeneree avec le runtime verrouille et une provenance explicite.
 Verification legere des chemins et en-tetes :
 
 `runtime/run_python.cmd scripts/check_sources.py`
+
+Verification echantillonnee des unites de temps :
+
+`runtime/run_python.cmd scripts/tickseq_v4_time_sanity_sample.py`

@@ -46,3 +46,9 @@ Garder ce fichier bref.
 - Aucun CSV n'est copie ni versionne dans NewTRY.
 - `scripts/check_sources.py` verifie les chemins et en-tetes sans lire les
   fichiers complets.
+
+## 2026-06-16 - Controle temps echantillonne
+
+- `scripts/tickseq_v4_time_sanity_sample.py` compare `DurationUS` et
+  `GapUsBefore` aux timestamps sur un echantillon borne.
+- La sortie reste un PASS/FAIL technique avec compteurs, sans analyse metier.
