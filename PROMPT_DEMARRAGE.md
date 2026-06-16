@@ -20,3 +20,7 @@ Premiere reponse attendue :
 
 Ne pas importer TRY_plan, ne pas produire de grand plan documentaire, ne pas
 lancer de regeneration sans demande explicite.
+
+Avant tout travail Python ulterieur, verifier l'environnement avec :
+
+`.\AI\NewTRY\runtime\check_env.cmd`

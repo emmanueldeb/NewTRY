@@ -30,3 +30,7 @@ Lire dans cet ordre :
 
 Ne pas lancer d'analyse, de script, de backtest, de compilation ou d'import
 avant d'avoir recu une direction explicite.
+
+Avant tout travail Python :
+
+`.\AI\NewTRY\runtime\check_env.cmd`

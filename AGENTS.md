@@ -16,6 +16,8 @@ Regles pratiques :
 - Respecter `CLAUDE.md` comme source de regles projet.
 - Utiliser `rg` pour chercher.
 - Utiliser `runtime/run_python.cmd` pour les scripts Python du projet.
+- Lancer `runtime/check_env.cmd` avant tout travail Python dans une nouvelle
+  session.
 - Ne pas importer massivement TRY_plan.
 - Ne pas modifier TRY_plan sauf demande explicite.
 - Un seul agent en ecriture a la fois.

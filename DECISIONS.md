@@ -23,3 +23,5 @@ Garder ce fichier bref.
 - Verification via `runtime/run_python.cmd` : Python 3.12.13, pandas 2.2.3,
   numpy 2.2.0, scipy 1.14.1, `pd.to_datetime(...).dtype == datetime64[ns]`.
 - Le wrapper NewTRY pointe sur ce venv avant tout autre Python.
+- `runtime/check_env.cmd` devient la commande commune Claude/Codex avant tout
+  travail Python.

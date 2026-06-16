@@ -43,7 +43,12 @@ Eviter l'usine a gaz documentaire.
 
 - Lancer tout script Python via `runtime/run_python.cmd`.
 - Ne pas lancer directement `python script.py`.
+- Avant tout travail Python dans une nouvelle session, lancer
+  `runtime/check_env.cmd`. Depuis `C:\SierraChart` :
+  `.\AI\NewTRY\runtime\check_env.cmd`.
 - Le wrapper doit echouer si le runtime n'est pas conforme.
+- Runtime canonique local attendu :
+  `C:\SierraChart\tools\newtry_python\Scripts\python.exe`.
 - Les conversions de timestamps passent par `lib/time_utils.py` ou par des
   calculs explicites `pd.Timedelta`.
 - Ne jamais caster directement une serie datetime via `.astype("int64")` ou
