@@ -172,8 +172,8 @@ def main() -> int:
         project_root=PROJECT_ROOT,
         extra={
             "note": (
-                "First non-temporal V/R pass on one TICKSEQ_V4 source. "
-                "No temporal columns are read."
+                "First non-temporal V/R descriptor pass on one TICKSEQ_V4 source. "
+                "No temporal columns are read. This does not test event-level beta or a power-law relation."
             ),
             "source": str(SOURCE),
             "source_size_bytes": stat.st_size,
@@ -181,11 +181,15 @@ def main() -> int:
             "input_hashing": "disabled_for_multi_gb_source",
             "chunk_rows": CHUNK_ROWS,
             "range_ticks": "round((PriceMax - PriceMin) / TickSize)",
-            "v_over_r_field": "volume_per_range_tick uses aggregate Volume sum / range tick sum on rows where R>0",
+            "r_zero_policy": "R=0 is tracked as a separate population and excluded from volume_per_range_tick",
+            "volume_per_range_tick_field": (
+                "aggregate Volume sum / range tick sum on rows where R>0; "
+                "descriptive only, not event-level beta"
+            ),
         },
     )
     print(f"Wrote {OUTPUT}")
-    print(f"OK: first V/R pass completed on {rows_read} sequences without temporal columns.")
+    print(f"OK: first V/R descriptor pass completed on {rows_read} sequences without temporal columns.")
     return 0
 
 

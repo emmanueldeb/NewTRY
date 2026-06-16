@@ -77,6 +77,9 @@ Regle d'import :
 Premiere branche analytique canonique. Question limitee : verifier sur une
 seule source TICKSEQ_V4 (`1T2025`) si la relation volume / range merite une
 branche, sans utiliser `DurationUS`, `GapUsBefore` ni timestamps.
+Le premier output est un descripteur agrege, pas un test de `beta` ni d'une
+relation puissance evenement par evenement.
+La masse `R=0` est suivie comme population distincte, pas comme bruit a ignorer.
 
 Script : `scripts/tick_vr_first_pass_1t2025.py`.
 Output ignore/provenance : `outputs/tick_vr_first_pass_1t2025.csv`.

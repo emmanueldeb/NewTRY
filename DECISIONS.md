@@ -85,3 +85,7 @@ Garder ce fichier bref.
 - Variables autorisees pour cette passe : `Volume`, `Prints`, range en ticks,
   `CutReason`.
 - `GapUsBefore` reste exclu tant que son domaine temporel n'est pas certifie.
+- `volume_per_range_tick` est un descripteur agrege `sum(V) / sum(R)` sur
+  `R>0`, pas un test de `beta` ni de la relation puissance V/R.
+- `R=0` est une population a suivre separement ; toute suite V/R devra dire
+  explicitement si elle l'exclut, la segmente ou l'etudie a part.
