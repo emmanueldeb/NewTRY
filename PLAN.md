@@ -52,7 +52,8 @@ Detail court : `docs/BASE_MESURE.md`.
 
 Study Sierra importee comme asset source :
 `studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
-`docs/TICKSEQ_V4.md`.
+`docs/TICKSEQ_V4.md`. CSV bruts references sans copie dans
+`data/README.md`.
 
 ### 2.4 Import depuis TRY_plan [PARKING]
 

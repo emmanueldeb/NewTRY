@@ -38,3 +38,9 @@ Garder ce fichier bref.
 - La copie TRY_plan et la copie `ACS_Source` avaient le meme SHA-256 avant
   import.
 - Aucun CSV, DLL, rapport ou chiffre TRY_plan n'est importe.
+
+## 2026-06-16 - Pointeurs vers CSV bruts
+
+- Les CSV bruts `TICKSEQ_V4` de `C:\SierraChart\Data\` sont references dans
+  `data/README.md`.
+- Aucun CSV n'est copie ni versionne dans NewTRY.
