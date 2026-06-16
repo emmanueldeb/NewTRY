@@ -99,3 +99,12 @@ Garder ce fichier bref.
 - `R=0` reste exclu de la regression et suivi comme population separee.
 - Les coefficients `beta` / `R2` sont masques si `beta_n < 50`, pour eviter
   qu'un petit groupe ressemble a un resultat exploitable.
+
+## 2026-06-16 - Domaine GapUsBefore
+
+- Phase 3 ouverte : certifier le domaine d'usage de `GapUsBefore` avant toute
+  analyse de respiration.
+- `scripts/tickseq_v4_gap_domain_certify.py` classe `GapUsBefore` sans
+  analyser la respiration : `-1`, `0`, `1..999 us`, `>=1000 us`.
+- Regle provisoire : `GapUsBefore >= 1000 us` peut etre traite comme temps
+  ecoule ; `0..999 us` reste technique/sub-ms.
