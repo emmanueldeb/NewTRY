@@ -23,7 +23,8 @@ Le suffixe CSV par defaut est `TICKSEQ_V4`.
 
 - `StartDateTime`, `EndDateTime` : timestamps de sequence.
 - `Symbol`, `Side`, `Prints`, `Volume`.
-- `DurationUS` : duree native C++ en microsecondes.
+- `DurationUS` : champ natif C++ en microsecondes, a certifier avant toute
+  interpretation temporelle.
 - `GapUsBefore` : silence natif C++ avant la sequence, en microsecondes.
 - `PriceStart`, `PriceEnd`, `PriceMin`, `PriceMax`, `VWAP`.
 - `StartBarIndex`, `EndBarIndex`, `TickSize`.
@@ -35,6 +36,14 @@ Le suffixe CSV par defaut est `TICKSEQ_V4`.
 Les champs `DurationUS` et `GapUsBefore` sont produits par la study C++ et sont
 deja en microsecondes. Ils ne doivent pas etre reconstruits en Python a partir
 de timestamps pandas sans passer par les utilitaires temps NewTRY.
+
+Garde-fou semantique supplementaire : au niveau sequence brute, `DurationUS`
+n'est pas considere comme une variable temporelle independante tant que le
+controle `scripts/tickseq_v4_duration_prints_certify.py` montre
+`DurationUS == Prints - 1` et `DurationUS < 1000 us` sur les sources courantes.
+Dans ce cas, il s'agit d'un span technique intra-ms lie au nombre de prints ;
+la vraie temporalite exploitable reste `GapUsBefore` ou des durees d'objets
+composes reconstruits explicitement.
 
 Les futures analyses Python doivent donc :
 

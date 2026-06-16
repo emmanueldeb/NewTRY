@@ -41,6 +41,7 @@ Inclus :
 - utilitaires temps dans `lib/time_utils.py` ;
 - provenance des outputs dans `lib/provenance.py` ;
 - scanner minimal `scripts/check_time_units.py` ;
+- garde-fou `DurationUS / Prints` pour les sources TICKSEQ_V4 ;
 - tests temps dans `tests/`.
 
 ### 2.2 Base de mesure V/R/D/G [SOCLE - pose]
@@ -53,7 +54,8 @@ Detail court : `docs/BASE_MESURE.md`.
 Study Sierra importee comme asset source :
 `studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
 `docs/TICKSEQ_V4.md`. CSV bruts references sans copie dans
-`data/README.md`.
+`data/README.md`. Semantique `DurationUS` controlee par
+`scripts/tickseq_v4_duration_prints_certify.py`.
 
 ### 2.4 Import depuis TRY_plan [PARKING]
 

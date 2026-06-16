@@ -60,3 +60,14 @@ Garder ce fichier bref.
 
 - `scripts/tickseq_v4_source_inventory.py` lit les sources en chunks et produit
   des compteurs d'integrite, sans statistiques de marche.
+
+## 2026-06-16 - Garde-fou DurationUS / Prints
+
+- TRY_plan avait consigne le grain ms natif et `MaxPauseUS = 1`, mais la
+  consequence `DurationUS` non independant restait insuffisamment verrouillee :
+  plusieurs docs continuaient a traiter `D = DurationUS` comme duree de rafale.
+- NewTRY ajoute un controle complet dedie :
+  `scripts/tickseq_v4_duration_prints_certify.py`.
+- Regle active : tant que `DurationUS == Prints - 1` et `DurationUS < 1000 us`
+  sur les sources `TICKSEQ_V4`, `DurationUS` est un span technique intra-ms,
+  pas une variable temporelle independante au niveau sequence brute.

@@ -9,11 +9,17 @@ NewTRY etudie d'abord les mouvements avec des variables directes :
 
 - `V` : volume en contrats ;
 - `R` : range en ticks ;
-- `D` : duree ;
+- `D` : duree, uniquement quand l'objet mesure possede une vraie etendue
+  temporelle ;
 - `G` : gap / silence avant l'evenement.
 
 Ces variables forment la base de mesure. Les indicateurs derives restent hors
 base de variables.
+
+Au niveau brut `TICKSEQ_V4`, `DurationUS` n'est pas promu automatiquement en
+`D`. Sur les sources actuelles, il doit d'abord passer le garde-fou dedie :
+`DurationUS == Prints - 1` et `DurationUS < 1000 us` signifient que le champ est
+un span technique intra-ms de sequencing, pas une duree de marche independante.
 
 ## Cadre herite comme hypothese de travail
 
@@ -31,6 +37,8 @@ base de variables.
 - Aucun chiffre de performance TRY_plan.
 - Aucune conclusion temporelle issue du narratif "sub-seconde / atome / mur
   sub-seconde".
+- Aucune conclusion fondee sur `DurationUS` comme duree independante au niveau
+  sequence brute.
 
 ## Regle d'usage
 
