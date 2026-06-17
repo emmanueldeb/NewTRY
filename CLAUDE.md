@@ -19,6 +19,15 @@ contexte historique. Il n'est pas une source a copier massivement.
 Objectif de gouvernance : garder NewTRY reconnaissable, minimal et fiable.
 Eviter l'usine a gaz documentaire.
 
+## Canon / piste
+
+- `canon` : regles, faits certifies et vocabulaire qui lient l'aval.
+- `piste` : exploration provisoire, reversible, sans autorite globale.
+- Une piste ne devient canon que via une entree datee dans `DECISIONS.md` et,
+  quand c'est possible, un garde-fou executable.
+- `IDEES.md` est un parking sans autorite : une idee peut sortir vers une
+  piste, jamais directement vers le canon.
+
 ## Regles permanentes
 
 ### Collaboration

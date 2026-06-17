@@ -52,7 +52,9 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
   prerequis a tout usage de `G`.
 - Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : FAIT pour le canon
   `G` ; pistes `G` en PARKING.
-- Phase 5 - Objets temporels composes : PARKING, seule voie ou une vraie
+- Phase 5 - Session / calendrier : CANON FUTUR, remplacement possible du seuil
+  provisoire `>=1h`, a traiter separement des lentilles d'analyse horaire/jour.
+- Phase 6 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
 - Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
   WVP/clusters : a ouvrir seulement sur demande explicite.
@@ -167,6 +169,11 @@ bucket `1-9min` sous garde d'effectif (`16` cas).
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 Les idees non actives peuvent etre notees dans `IDEES.md` sans devenir des
 branches.
+
+Core a ne pas confondre avec les pistes : une future logique session /
+calendrier peut remplacer le seuil `>=1h` comme borne de fermeture. Les
+tranches horaires et jours semaine restent une lentille d'analyse tant qu'elles
+ne sont pas justifiees comme canon.
 
 Candidats issus de TRY_plan :
 

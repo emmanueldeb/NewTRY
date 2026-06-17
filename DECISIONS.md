@@ -201,3 +201,16 @@ Garder ce fichier bref.
   `10-59min` contient `0` sequence.
 - Ces valeurs decrivent la sequence qui suit le `G`, pas une relation
   temporelle `G->G`.
+
+## 2026-06-17 - Gouvernance canon / piste
+
+- Le clivage NewTRY retenu est `canon` / `piste`, pas `safe` / `recherche`.
+- `canon` : regles, faits certifies et vocabulaire qui lient l'aval.
+- `piste` : exploration provisoire, reversible, sans autorite globale.
+- Une piste ne devient canon que via une entree datee dans `DECISIONS.md` et,
+  quand c'est possible, un garde-fou executable.
+- `IDEES.md` reste un parking sans autorite ; une idee peut sortir vers une
+  piste, jamais directement vers le canon.
+- La logique session / calendrier est un canon futur possible ; les tranches
+  horaires et jours semaine restent une lentille d'analyse tant qu'elles ne
+  sont pas justifiees comme canon.
