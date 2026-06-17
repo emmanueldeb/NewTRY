@@ -60,3 +60,17 @@ Cadre provisoire :
 - ne pas confondre avec la vue front derivee ;
 - comparer les contrats par age relatif au roll ou a l'echeance ;
 - rester descriptif avant toute conclusion.
+
+## Inventaire NewTRY
+
+Question possible : faire le point sur ce dont NewTRY dispose deja avant
+d'ouvrir une nouvelle phase.
+
+Cadre provisoire :
+
+- inventaire des sources raw, scripts, garde-fous, outputs regenerables,
+  decisions et pistes en parking ;
+- distinguer clairement `canon`, `piste`, `parking`, `legacy` et donnees hors
+  Git ;
+- ne pas transformer l'inventaire en refonte documentaire ;
+- objectif : rendre le projet redemarrable et lisible avant de choisir la suite.
