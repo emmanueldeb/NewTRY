@@ -142,3 +142,21 @@ Garder ce fichier bref.
   fermeture pour cette source, a revalider avant generalisation.
 - `real_gap_mean_ms` reste une mesure descriptive mais ne doit pas servir de
   signal de respiration : les buckets, medianes et effectifs sont prioritaires.
+
+## 2026-06-17 - Seuil fermeture multi-sources
+
+- `scripts/gap_closure_threshold_multisource.py` lit uniquement
+  `GapUsBefore` sur les 5 sources `TICKSEQ_V4` referencees.
+- Controle input : `54_227_841` lignes lues sur fichiers references, 0
+  missing, 0 valeur negative invalide, `GapUsBefore = -1` une fois par source.
+- Le bucket `10-59min` est vide sur chaque source.
+- Le bucket `1-9min` reste rare (`45` gaps sur les fichiers references) et
+  plafonne a `120,054 s`.
+- Le bucket `>=1h` est present sur chaque source (`36`, `18`, `22`, `63`,
+  `43` gaps ; `182` au total fichier, non deduplique).
+- Decision provisoire : avant toute future chaine `G->G`, un gap `>=1h` doit
+  etre traite comme coupure de fermeture candidate et ne doit pas etre traverse
+  comme respiration intraday, sauf remplacement explicite par une logique
+  calendrier/session ulterieure.
+- Les CSV references peuvent se chevaucher ; la ligne aggregate sert au
+  controle technique, pas a une frequence historique dedupliquee.
