@@ -57,7 +57,8 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
 - Phase 6 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
 - Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
-  WVP/clusters : a ouvrir seulement sur demande explicite.
+  debuts/fins de contrat, WVP/clusters : a ouvrir seulement sur demande
+  explicite.
 
 ## 3. Etat courant
 
@@ -89,6 +90,10 @@ Study Sierra importee comme asset source :
 `docs/TICKSEQ_V4.md`. CSV bruts references sans copie dans
 `data/README.md`. Semantique `DurationUS` controlee par
 `scripts/tickseq_v4_duration_prints_certify.py`.
+
+Politique raw canon future : un fichier complet par contrat brut, non ajuste,
+`Continuous Contract = None`, hors Git. La vue front sera une projection
+derivee du raw via `roll_in` / `roll_out`, pas une seconde source canon.
 
 ### 3.4 Import depuis TRY_plan [PARKING]
 

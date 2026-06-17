@@ -232,3 +232,18 @@ Garder ce fichier bref.
 - Conclusion de canon provisoire : le seuil `>=1h` reste une borne de coupure
   candidate, mais il ne doit pas etre assimile uniquement a overnight /
   week-end ; une future logique session / calendrier devra distinguer ces cas.
+
+## 2026-06-17 - Source raw canon par contrat
+
+- Source raw canon future : un fichier complet par contrat brut, non ajuste,
+  `Continuous Contract = None`, CSV hors Git.
+- Le mensuel par contrat est rejete comme regle raw canon : il cree des joints
+  intra-contrat sans benefice core.
+- Un bloc raw n'est definitif que lorsque le contrat est echu/regle ; le
+  manifest devra distinguer `settled` et `live`.
+- Vue front : projection derivee et regenerable du raw via `roll_in` /
+  `roll_out` deterministes, sans devenir une seconde source canon.
+- La fenetre front filtre la liquidite exploitable ; les debuts/fins de contrat
+  restent disponibles dans le raw pour audit ou piste future.
+- Les niveaux inter-contrats continus restent differes ; pas de back-adjust
+  Sierra comme canon.

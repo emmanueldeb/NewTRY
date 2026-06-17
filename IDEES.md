@@ -48,3 +48,15 @@ Cadre provisoire :
   releve du canon futur ;
 - les tranches horaires et jours semaine comme lecture analytique restent une
   piste tant qu'elles ne sont pas justifiees.
+
+## Debuts / fins de contrat
+
+Question possible : les phases hors fenetre front ont-elles une signature
+propre de liquidite, volume, range ou gap ?
+
+Cadre provisoire :
+
+- utiliser le raw per-contrat complet ;
+- ne pas confondre avec la vue front derivee ;
+- comparer les contrats par age relatif au roll ou a l'echeance ;
+- rester descriptif avant toute conclusion.
