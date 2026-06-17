@@ -120,6 +120,9 @@ Output ignore/provenance : `outputs/tickseq_v4_gap_domain_certify.csv`.
 Premiere utilisation de `G` apres certification. Source unique `1T2025`.
 Le sub-ms reste censure ; seuls les gaps `>= 1 ms` entrent dans les buckets de
 temps reel. Pas de sequence `G->G` ni de respiration avancee dans cette passe.
+Audit croise : les fermetures doivent etre separees par magnitude, pas par
+`CutReason`, et la moyenne agregee ne doit pas devenir un descripteur de
+respiration.
 
 Script : `scripts/gap_real_first_pass_1t2025.py`.
 Output ignore/provenance : `outputs/gap_real_first_pass_1t2025.csv`.

@@ -128,3 +128,17 @@ Garder ce fichier bref.
   comme silence nul.
 - `scripts/gap_real_first_pass_1t2025.py` produit des buckets descriptifs de
   gaps reels ; ce n'est pas une analyse de respiration `G->G`.
+
+## 2026-06-17 - Garde-fous silence reel
+
+- Audit croise reproduit la passe `gap_real_first_pass_1t2025.py` au chiffre
+  pres.
+- `CutReason` ne capture pas les fermetures : `GapUsBefore` decrit le silence
+  avant la sequence, tandis que `CutReason` decrit comment la sequence se
+  termine.
+- Les fermetures doivent donc etre separees par magnitude, pas par `CutReason`.
+- Sur `1T2025`, le bucket `10-59min` est vide, `1-9min` plafonne a environ
+  `89 s`, et `>=1h` contient `63` gaps ; `>=1h` est un seuil candidat de
+  fermeture pour cette source, a revalider avant generalisation.
+- `real_gap_mean_ms` reste une mesure descriptive mais ne doit pas servir de
+  signal de respiration : les buckets, medianes et effectifs sont prioritaires.

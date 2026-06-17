@@ -170,6 +170,19 @@ def main() -> int:
             "real_time_threshold_us": REAL_TIME_THRESHOLD_US,
             "sub_ms_rule": "GapUsBefore in [0, 999] us is censored/sub-ms and never treated as zero silence.",
             "resolution_floor_rule": "No structure below 1 ms is analyzed or claimed.",
+            "closure_guard": (
+                "Do not identify market closures from CutReason. GapUsBefore is the silence before "
+                "the sequence; CutReason describes how that sequence ended. Separate closures by "
+                "gap magnitude before any G-to-G work."
+            ),
+            "mean_guard": (
+                "The aggregate real_gap_mean_ms is descriptive only and can be dominated by rare "
+                "long closures. Use buckets, medians, and counts for respiration decisions."
+            ),
+            "closure_threshold_candidate": (
+                "On 1T2025, bucket 10-59min is empty and >=1h has 63 gaps; >=1h is only a "
+                "source-local closure candidate until revalidated."
+            ),
             "scope": "descriptive first pass; no trading signal or conclusion",
         },
     )
