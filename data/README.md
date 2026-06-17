@@ -31,6 +31,10 @@ Inventaire complet d'integrite source (lecture chunked) :
 
 `runtime/run_python.cmd scripts/tickseq_v4_source_inventory.py`
 
+Audit leger d'un candidat raw per-contrat :
+
+`runtime/run_python.cmd scripts/raw_contract_candidate_audit.py --source <csv> --contract <contrat>`
+
 ## Source raw canon future
 
 La source raw canon NewTRY sera organisee en un fichier CSV complet par contrat

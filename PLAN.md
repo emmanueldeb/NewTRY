@@ -94,6 +94,8 @@ Study Sierra importee comme asset source :
 Politique raw canon future : un fichier complet par contrat brut, non ajuste,
 `Continuous Contract = None`, hors Git. La vue front sera une projection
 derivee du raw via `roll_in` / `roll_out`, pas une seconde source canon.
+Premier candidat raw `NQH25-CME` exporte et audite legerement, sans promotion
+manifest.
 
 ### 3.4 Import depuis TRY_plan [PARKING]
 

@@ -247,3 +247,18 @@ Garder ce fichier bref.
   restent disponibles dans le raw pour audit ou piste future.
 - Les niveaux inter-contrats continus restent differes ; pas de back-adjust
   Sierra comme canon.
+
+## 2026-06-17 - Premier candidat raw NQH25
+
+- Export candidat : `C:\SierraChart\Data\TRY_TickSequenceExport_NQH25-CME_TICKSEQ_V4.csv`.
+- Audit leger via `scripts/raw_contract_candidate_audit.py`, sans promotion
+  manifest.
+- Resultats : `19_558_036` lignes, symbole unique `NQH25-CME`,
+  `first_start = 2024-01-02 10:48:21.942000`,
+  `last_end = 2025-03-21 09:29:56.556000`.
+- Prix observes : `PriceMin = 17_417`, `PriceMax = 22_450`, coherents avec
+  un contrat brut non back-adjusted attendu.
+- Controles passes : `DurationUS == Prints - 1`, 0 `GapUsBefore` invalide,
+  `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
+- Statut : candidat raw `settled` a integrer plus tard au manifest, apres
+  politique manifest/hash et controles complets.
