@@ -32,6 +32,13 @@ Principes :
   verrouille ;
 - une piste devient canonique NewTRY seulement apres provenance et validation.
 
+Canon / piste :
+
+- `canon` : regles, faits certifies et vocabulaire qui lient l'aval ;
+- `piste` : exploration provisoire, reversible, sans autorite globale ;
+- une piste ne devient canon que via une entree datee dans `DECISIONS.md`
+  et, quand c'est possible, un garde-fou executable.
+
 ## 2. Trajectoire indicative
 
 Cette trajectoire donne l'ordre logique de reconstruction. Elle est revisable :
@@ -43,9 +50,8 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
   distincte du ratio agrege : FAIT.
 - Phase 3 - Certification du domaine temporel de `GapUsBefore` : FAIT,
   prerequis a tout usage de `G`.
-- Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : EN COURS ;
-  seuil de fermeture par magnitude valide sur sources referencees ; `G`
-  restreint aux gaps intraday.
+- Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : FAIT pour le canon
+  `G` ; pistes `G` en PARKING.
 - Phase 5 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
 - Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
@@ -53,7 +59,7 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
 
 ## 3. Etat courant
 
-### 3.1 Noyau de confiance [ACTIF - amorcage]
+### 3.1 Noyau de confiance [CANON - amorcage]
 
 But : poser les garde-fous avant toute analyse metier.
 
@@ -69,12 +75,12 @@ Inclus :
 - scanner semantique `scripts/check_durationus_semantics.py` ;
 - tests temps dans `tests/`.
 
-### 3.2 Base de mesure V/R/D/G [SOCLE - pose]
+### 3.2 Base de mesure V/R/D/G [CANON - vocabulaire]
 
 Premier import conceptuel depuis TRY_plan, sans output ni chiffre canonique.
 Detail court : `docs/BASE_MESURE.md`.
 
-### 3.3 Source tick TICKSEQ_V4 [SOCLE - source importee]
+### 3.3 Source tick TICKSEQ_V4 [CANON - source importee]
 
 Study Sierra importee comme asset source :
 `studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
@@ -94,9 +100,9 @@ Regle d'import :
 - narratif "sub-seconde / atome / mur sub-seconde" : invalide comme conclusion ;
 - hypotheses : recuperables comme questions, jamais comme resultats.
 
-### 3.5 Tick sans temps / V-R [ACTIF]
+### 3.5 Tick sans temps / V-R [PISTE - parking]
 
-Premiere branche analytique canonique. Question limitee : verifier sur une
+Premiere piste analytique descriptive. Question limitee : verifier sur une
 seule source TICKSEQ_V4 (`1T2025`) si la relation volume / range merite une
 branche, sans utiliser `DurationUS`, `GapUsBefore` ni timestamps.
 Le premier output est un descripteur agrege, pas un test de `beta` ni d'une
@@ -110,7 +116,7 @@ Clarification `beta` evenement par evenement sur `R>0` :
 `scripts/tick_vr_beta_probe_1t2025.py`.
 Output ignore/provenance : `outputs/tick_vr_beta_probe_1t2025.csv`.
 
-### 3.6 Domaine GapUsBefore [SOCLE - certifie]
+### 3.6 Domaine GapUsBefore [CANON - certifie]
 
 Certification du domaine d'usage de `GapUsBefore` avant toute branche
 respiration / silence. Regle provisoire : `GapUsBefore >= 1000 us` peut etre
@@ -120,7 +126,7 @@ Toute future respiration reste limitee a une resolution plancher de 1 ms.
 Script : `scripts/tickseq_v4_gap_domain_certify.py`.
 Output ignore/provenance : `outputs/tickseq_v4_gap_domain_certify.csv`.
 
-### 3.7 Silence reel simple [ACTIF]
+### 3.7 Silence reel simple / G intraday [CANON borne - pistes parking]
 
 Premiere utilisation de `G` apres certification. Source unique `1T2025`.
 Le sub-ms reste censure ; seuls les gaps `>= 1 ms` entrent dans les buckets de
@@ -128,6 +134,10 @@ temps reel. Pas de sequence `G->G` ni de respiration avancee dans cette passe.
 Audit croise : les fermetures doivent etre separees par magnitude, pas par
 `CutReason`, et la moyenne agregee ne doit pas devenir un descripteur de
 respiration.
+
+Canon acquis : `G` designe un gap intraday exploitable ; sub-ms censure ;
+fermetures candidates `>=1h` exclues de `G`. Les passes descriptives `G`
+ci-dessous sont en parking, a rouvrir seulement sur hypothese explicite.
 
 Script : `scripts/gap_real_first_pass_1t2025.py`.
 Output ignore/provenance : `outputs/gap_real_first_pass_1t2025.csv`.
@@ -164,6 +174,7 @@ Candidats issus de TRY_plan :
 - atypisme / absorption / deplacement ;
 - swings DC et jambes composees ;
 - respiration avancee G->G ;
+- segmentation horaire / jours semaine comme lentille d'analyse ;
 - R0 / niveaux / echappement ;
 - approche bougie / WVP / clusters.
 

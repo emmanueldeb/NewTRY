@@ -8,9 +8,11 @@ reconstruction controlee.
 
 Regles :
 
+- aucune autorite : ni fait, ni conclusion, ni canon ;
 - rester court ;
 - ne pas importer de chiffres TRY_plan comme resultats ;
 - ne pas transformer une intuition en tache active ;
+- une idee peut sortir vers une piste, jamais directement vers le canon ;
 - ouvrir une branche seulement via `PLAN.md` quand l'utilisateur le demande.
 
 ## G intraday longs
@@ -32,3 +34,17 @@ Cadre provisoire :
 - ne pas utiliser `CutReason` comme detecteur de fermeture ;
 - rester descriptif : pas de signal metier, pas de trading, pas de `G->G` par
   defaut.
+
+## Segmentation horaire / jours semaine
+
+Question possible : relire les futures pistes par tranche horaire et jour de
+semaine pour eviter de melanger des regimes de marche differents.
+
+Cadre provisoire :
+
+- ne pas confondre cette lentille d'analyse avec la definition canonique de
+  session / fermeture ;
+- la logique calendrier/session qui remplacerait un jour le seuil `>=1h`
+  releve du canon futur ;
+- les tranches horaires et jours semaine comme lecture analytique restent une
+  piste tant qu'elles ne sont pas justifiees.
