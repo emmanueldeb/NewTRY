@@ -277,3 +277,18 @@ Garder ce fichier bref.
   `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
 - Statut : second candidat raw `settled`, utile pour verifier que la strategie
   per-contrat brut se reproduit sur deux echeances consecutives.
+
+## 2026-06-17 - Troisieme candidat raw NQU25
+
+- Export candidat : `C:\SierraChart\Data\TRY_TickSequenceExport_NQU25-CME_TICKSEQ_V4.csv`.
+- Audit leger via `scripts/raw_contract_candidate_audit.py`, sans promotion
+  manifest.
+- Resultats : `15_103_881` lignes, symbole unique `NQU25-CME`,
+  `first_start = 2024-08-02 08:23:56.068000`,
+  `last_end = 2025-09-19 09:29:51.568000`.
+- Prix observes : `PriceMin = 16_608`, `PriceMax = 24_575`, coherents avec
+  un contrat brut non back-adjusted attendu.
+- Controles passes : `DurationUS == Prints - 1`, 0 `GapUsBefore` invalide,
+  `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
+- Statut : troisieme candidat raw `settled`, confirmant la reproductibilite
+  de l'export brut per-contrat sur trois echeances consecutives.
