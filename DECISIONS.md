@@ -160,3 +160,25 @@ Garder ce fichier bref.
   calendrier/session ulterieure.
 - Les CSV references peuvent se chevaucher ; la ligne aggregate sert au
   controle technique, pas a une frequence historique dedupliquee.
+
+## 2026-06-17 - Vocabulaire G intraday
+
+- Dans NewTRY, `G` designe un gap intraday exploitable.
+- Une fermeture, un overnight, un week-end ou une coupure de session n'est pas
+  un `G` ; c'est une coupure a exclure ou a separer.
+- Regle courante issue de la validation multi-sources : `1000 us <=
+  GapUsBefore < 1h` peut entrer dans `G` ; `GapUsBefore >= 1h` reste une
+  coupure candidate, sauf future logique calendrier/session plus precise.
+
+## 2026-06-17 - Premiere passe G intraday stricte
+
+- `scripts/g_intraday_first_pass_1t2025.py` lit uniquement `GapUsBefore` sur
+  `TICKSEQ_V4_1T2025`.
+- Definition appliquee : `G = 1000 us <= GapUsBefore < 1h`.
+- Controle : `19_363_849` lignes lues, 0 invalides.
+- Exclusions : `1_995_405` sub-ms censures, `63` coupures candidates `>=1h`.
+- `G` intraday retenus : `17_368_380` ; max `G` intraday `89,355 s`.
+- Grands `G` intraday : `33_481` dans `10-59s`, `16` dans `1-9min`,
+  `0` dans `10-59min`.
+- Cette passe reste descriptive : pas de `G->G`, pas de `CutReason`, pas de
+  signal metier.

@@ -44,7 +44,8 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
 - Phase 3 - Certification du domaine temporel de `GapUsBefore` : FAIT,
   prerequis a tout usage de `G`.
 - Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : EN COURS ;
-  seuil de fermeture par magnitude valide sur sources referencees.
+  seuil de fermeture par magnitude valide sur sources referencees ; `G`
+  restreint aux gaps intraday.
 - Phase 5 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
 - Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
@@ -137,6 +138,12 @@ Output ignore/provenance :
 `outputs/gap_closure_threshold_multisource.csv`.
 Resultat : bucket `10-59min` vide sur les 5 sources referencees ; `>=1h`
 reste le seuil candidat de coupure avant toute future chaine `G->G`.
+
+Passe stricte `G` intraday :
+`scripts/g_intraday_first_pass_1t2025.py`.
+Output ignore/provenance : `outputs/g_intraday_first_pass_1t2025.csv`.
+Resultat `1T2025` : `17_368_380` `G` intraday ; `63` coupures `>=1h`
+exclues de `G`.
 
 ### 3.8 Branches analytiques [PARKING]
 

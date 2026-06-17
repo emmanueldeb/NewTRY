@@ -11,7 +11,7 @@ NewTRY etudie d'abord les mouvements avec des variables directes :
 - `R` : range en ticks ;
 - `D` : duree, uniquement quand l'objet mesure possede une vraie etendue
   temporelle ;
-- `G` : gap / silence avant l'evenement.
+- `G` : gap / silence intraday avant l'evenement.
 
 Ces variables forment la base de mesure. Les indicateurs derives restent hors
 base de variables.
@@ -27,6 +27,9 @@ un span technique intra-ms de sequencing, pas une duree de marche independante.
   le volume produit ou non du deplacement.
 - `G` est traite comme une dimension propre : silence / respiration locale,
   a ne pas confondre avec `V`, `R` ou `D`.
+- Les fermetures, overnight, week-ends et coupures de session ne sont pas des
+  `G`. Elles doivent etre exclues ou separees avant toute analyse de
+  respiration.
 - Les objets composes (swings, jambes, zones, respiration) ne sont pas des
   resultats acquis. Ils seront reintroduits un par un si utiles.
 
