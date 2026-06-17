@@ -89,13 +89,15 @@ Study Sierra importee comme asset source :
 `studies/TRY_TickSequenceExport_v4.cpp`. Detail court :
 `docs/TICKSEQ_V4.md`. CSV bruts references sans copie dans
 `data/README.md`. Semantique `DurationUS` controlee par
-`scripts/tickseq_v4_duration_prints_certify.py`.
+`scripts/tickseq_v4_duration_prints_certify.py` : span natif technique,
+compatible avec `Prints`, non promu en `D`.
 
 Politique raw canon future : un fichier complet par contrat brut, non ajuste,
 `Continuous Contract = None`, hors Git. La vue front sera une projection
 derivee du raw via `roll_in` / `roll_out`, pas une seconde source canon.
-Premiers candidats raw `NQH25-CME`, `NQM25-CME` et `NQU25-CME` exportes et
-audites legerement, sans promotion manifest.
+Premiers candidats raw `NQH25-CME`, `NQM25-CME`, `NQU25-CME`, `ESH25-CME`,
+`ESM25-CME` et `ESU25-CME` exportes et audites legerement, sans promotion
+manifest.
 
 ### 3.4 Import depuis TRY_plan [PARKING]
 

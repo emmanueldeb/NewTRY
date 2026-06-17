@@ -21,7 +21,7 @@ USECOLS = [
     "Symbol",
     "Prints",
     "Volume",
-    "DurationUS",  # durationus-ok: technical raw candidate audit; checks DurationUS == Prints - 1 only.
+    "DurationUS",  # durationus-ok: technical raw candidate audit; checks compatibility with Prints.
     "GapUsBefore",
     "PriceMin",
     "PriceMax",
@@ -59,7 +59,13 @@ def main() -> int:
         "symbol_count": 0,
         "symbols": "",
         "expected_contract_match": False,
+        "duration_pair_invalid_count": 0,
+        "duration_negative_count": 0,
+        "duration_gt_prints_minus_1_count": 0,
         "duration_not_prints_minus_1_count": 0,
+        "duration_lt_prints_minus_1_count": 0,
+        "duration_999_with_prints_gt_1000_count": 0,
+        "duration_max_us": None,
         "gap_invalid_count": 0,
         "gap_minus_one_count": 0,
         "price_min": None,
@@ -87,11 +93,34 @@ def main() -> int:
         symbols.update(chunk["Symbol"].dropna().astype(str).unique().tolist())
 
         prints = pd.to_numeric(chunk["Prints"], errors="coerce")
-        duration = pd.to_numeric(chunk["DurationUS"], errors="coerce")  # durationus-ok: raw candidate invariant check.
-        duration_checkable = prints.notna() & duration.notna()
-        state["duration_not_prints_minus_1_count"] = int(state["duration_not_prints_minus_1_count"]) + int(
-            (duration_checkable & (duration != prints - 1)).sum()
+        duration = pd.to_numeric(chunk["DurationUS"], errors="coerce")  # durationus-ok: raw candidate compatibility check.
+        duration_valid_pair = prints.notna() & duration.notna() & (prints >= 1)
+        expected_duration = prints - 1
+        state["duration_pair_invalid_count"] = int(state["duration_pair_invalid_count"]) + int(
+            (~duration_valid_pair).sum()
         )
+        state["duration_negative_count"] = int(state["duration_negative_count"]) + int(
+            (duration_valid_pair & (duration < 0)).sum()
+        )
+        state["duration_gt_prints_minus_1_count"] = int(state["duration_gt_prints_minus_1_count"]) + int(
+            (duration_valid_pair & (duration > expected_duration)).sum()
+        )
+        state["duration_not_prints_minus_1_count"] = int(state["duration_not_prints_minus_1_count"]) + int(
+            (duration_valid_pair & (duration != expected_duration)).sum()
+        )
+        state["duration_lt_prints_minus_1_count"] = int(state["duration_lt_prints_minus_1_count"]) + int(
+            (duration_valid_pair & (duration < expected_duration)).sum()
+        )
+        state["duration_999_with_prints_gt_1000_count"] = int(
+            state["duration_999_with_prints_gt_1000_count"]
+        ) + int((duration_valid_pair & (duration == 999) & (prints > 1000)).sum())
+        if duration_valid_pair.any():
+            chunk_duration_max = int(duration[duration_valid_pair].max())
+            state["duration_max_us"] = (
+                chunk_duration_max
+                if state["duration_max_us"] is None
+                else max(int(state["duration_max_us"]), chunk_duration_max)
+            )
 
         gap = pd.to_numeric(chunk["GapUsBefore"], errors="coerce")
         state["gap_invalid_count"] = int(state["gap_invalid_count"]) + int((gap.isna() | (gap < -1)).sum())
@@ -128,7 +157,9 @@ def main() -> int:
     state["ok"] = (
         int(state["rows"]) > 0
         and bool(state["expected_contract_match"])
-        and int(state["duration_not_prints_minus_1_count"]) == 0
+        and int(state["duration_pair_invalid_count"]) == 0
+        and int(state["duration_negative_count"]) == 0
+        and int(state["duration_gt_prints_minus_1_count"]) == 0
         and int(state["gap_invalid_count"]) == 0
         and int(state["gap_minus_one_count"]) == 1
         and int(state["price_min_gt_max_count"]) == 0

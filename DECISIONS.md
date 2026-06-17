@@ -74,9 +74,12 @@ Garder ce fichier bref.
   `EndDateTime` en duree de sequence sans justification explicite.
 - `scripts/check_tickseq_v4_study_contract.py` verifie que la study source
   reste sur le contrat attendu, notamment `MaxPauseUS = 1`.
-- Regle active : tant que `DurationUS == Prints - 1` et `DurationUS < 1000 us`
-  sur les sources `TICKSEQ_V4`, `DurationUS` est un span technique intra-ms,
-  pas une variable temporelle independante au niveau sequence brute.
+- Regle active : `DurationUS` est le span natif C++ `endUS - startUS`.
+  Avec `MaxPauseUS = 1`, il doit rester non negatif et compatible avec
+  `Prints` (`DurationUS <= Prints - 1`), mais l'egalite `DurationUS == Prints
+  - 1` est seulement un cas courant, pas un invariant global.
+- Consequence analytique inchangee : `DurationUS` reste un champ technique de
+  sequence brute, pas une variable temporelle independante au niveau sequence.
 
 ## 2026-06-16 - Premiere branche analytique
 
@@ -292,3 +295,41 @@ Garder ce fichier bref.
   `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
 - Statut : troisieme candidat raw `settled`, confirmant la reproductibilite
   de l'export brut per-contrat sur trois echeances consecutives.
+
+## 2026-06-17 - Nuance DurationUS sur ES haute densite
+
+- Les candidats ES bruts revelent quelques sequences `SIDE` avec plus de
+  1000 prints dans un span natif de `999 us`.
+- Exemples audites via `scripts/raw_contract_duration_mismatch_probe.py` :
+  `ESH25` = 2 lignes, `ESM25` = 3 lignes, `ESU25` = 1 ligne.
+- Ces lignes respectent `0 <= DurationUS <= Prints - 1` mais invalident la
+  formulation trop stricte "`DurationUS == Prints - 1` partout".
+- La doctrine est donc corrigee : `DurationUS` reste un champ natif technique
+  `endUS - startUS`, non promu en `D`; les audits candidats bloquent seulement
+  les valeurs absentes, negatives ou superieures a `Prints - 1`.
+
+## 2026-06-17 - Candidats raw ES H/M/U25
+
+- Exports candidats :
+  `C:\SierraChart\Data\TRY_TickSequenceExport_ESH25-CME_TICKSEQ_V4.csv`,
+  `C:\SierraChart\Data\TRY_TickSequenceExport_ESM25-CME_TICKSEQ_V4.csv`,
+  `C:\SierraChart\Data\TRY_TickSequenceExport_ESU25-CME_TICKSEQ_V4.csv`.
+- Audit leger via `scripts/raw_contract_candidate_audit.py`, sans promotion
+  manifest.
+- `ESH25-CME` : `21_108_603` lignes,
+  `first_start = 2023-12-13 15:43:23.828000`,
+  `last_end = 2025-03-21 09:29:59.184000`,
+  `PriceMin = 4_902.75`, `PriceMax = 6_178.75`.
+- `ESM25-CME` : `23_312_682` lignes,
+  `first_start = 2024-02-02 11:54:02.352000`,
+  `last_end = 2025-06-20 09:29:58.728001`,
+  `PriceMin = 4_832`, `PriceMax = 6_235`.
+- `ESU25-CME` : `13_160_609` lignes,
+  `first_start = 2024-07-23 15:56:33.300000`,
+  `last_end = 2025-09-19 09:29:58.697003`,
+  `PriceMin = 4_877.5`, `PriceMax = 6_662`.
+- Controles passes pour les trois : symbole unique attendu,
+  `0 <= DurationUS <= Prints - 1`, 0 `GapUsBefore` invalide,
+  `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
+- Statut : candidats raw `settled` ES, utiles comme axe comparatif futur pour
+  robustesse dynamique, sans ouvrir encore de piste comparative.

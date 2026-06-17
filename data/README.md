@@ -35,6 +35,10 @@ Audit leger d'un candidat raw per-contrat :
 
 `runtime/run_python.cmd scripts/raw_contract_candidate_audit.py --source <csv> --contract <contrat>`
 
+Diagnostic des lignes ou le span technique differe de `Prints - 1` :
+
+`runtime/run_python.cmd scripts/raw_contract_duration_mismatch_probe.py --source <csv>`
+
 ## Source raw canon future
 
 La source raw canon NewTRY sera organisee en un fichier CSV complet par contrat

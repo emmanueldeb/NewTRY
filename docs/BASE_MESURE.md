@@ -17,9 +17,11 @@ Ces variables forment la base de mesure. Les indicateurs derives restent hors
 base de variables.
 
 Au niveau brut `TICKSEQ_V4`, `DurationUS` n'est pas promu automatiquement en
-`D`. Sur les sources actuelles, il doit d'abord passer le garde-fou dedie :
-`DurationUS == Prints - 1` et `DurationUS < 1000 us` signifient que le champ est
-un span technique intra-ms de sequencing, pas une duree de marche independante.
+`D`. Il s'agit du span natif C++ `endUS - startUS`. Avec `MaxPauseUS = 1`, il
+doit rester compatible avec `Prints` (`0 <= DurationUS <= Prints - 1`), mais
+l'egalite avec `Prints - 1` n'est pas un invariant global. Le champ reste donc
+un compteur/span technique de sequence brute, pas une duree de marche
+independante.
 
 ## Cadre herite comme hypothese de travail
 

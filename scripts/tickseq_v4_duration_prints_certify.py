@@ -59,8 +59,11 @@ def certify_source(path: Path) -> dict[str, object]:
         "prints_lt1_count": 0,
         "duration_negative_count": 0,
         "duration_eq_prints_minus_one_count": 0,
+        "duration_lt_prints_minus_one_count": 0,
+        "duration_gt_prints_minus_one_count": 0,
         "duration_prints_mismatch_count": 0,
         "duration_prints_max_abs_diff": 0,
+        "duration_999_with_prints_gt_1000_count": 0,
         "duration_ge_1000_count": 0,
         "duration_max_us": 0,
     }
@@ -88,6 +91,12 @@ def certify_source(path: Path) -> dict[str, object]:
             state["duration_eq_prints_minus_one_count"] = int(state["duration_eq_prints_minus_one_count"]) + int(
                 (~mismatch).sum()
             )
+            state["duration_lt_prints_minus_one_count"] = int(state["duration_lt_prints_minus_one_count"]) + int(
+                (diff < 0).sum()
+            )
+            state["duration_gt_prints_minus_one_count"] = int(state["duration_gt_prints_minus_one_count"]) + int(
+                (diff > 0).sum()
+            )
             state["duration_prints_mismatch_count"] = int(state["duration_prints_mismatch_count"]) + int(
                 mismatch.sum()
             )
@@ -98,6 +107,9 @@ def certify_source(path: Path) -> dict[str, object]:
             state["duration_ge_1000_count"] = int(state["duration_ge_1000_count"]) + int(
                 (duration[valid_pair] >= 1000).sum()
             )
+            state["duration_999_with_prints_gt_1000_count"] = int(
+                state["duration_999_with_prints_gt_1000_count"]
+            ) + int(((duration[valid_pair] == 999) & (prints[valid_pair] > 1000)).sum())
             state["duration_max_us"] = max(
                 int(state["duration_max_us"]),
                 int(duration[valid_pair].max()),
@@ -108,8 +120,7 @@ def certify_source(path: Path) -> dict[str, object]:
         "duration_missing_count",
         "prints_lt1_count",
         "duration_negative_count",
-        "duration_prints_mismatch_count",
-        "duration_ge_1000_count",
+        "duration_gt_prints_minus_one_count",
     ]
     state["ok"] = int(state["rows"]) > 0 and all(int(state[field]) == 0 for field in fail_fields)
     return state
@@ -132,11 +143,12 @@ def main() -> int:
             "input_paths": [str(path) for path in TICKSEQ_V4_SOURCES],
             "input_hashing": "disabled_for_multi_gb_sources",
             "domain_contract": {
-                "DurationUS": "must equal Prints - 1 on current TICKSEQ_V4 sources",
-                "DurationUS_threshold": "must stay < 1000 us on current TICKSEQ_V4 sources",
+                "DurationUS": "must be a non-negative native technical span compatible with Prints",
+                "DurationUS_upper_bound": "with MaxPauseUS=1, must not exceed Prints - 1",
                 "interpretation": (
-                    "At raw sequence level, DurationUS is a technical intra-millisecond "
-                    "sequencing span, not an independent elapsed-time variable."
+                    "At raw sequence level, DurationUS is the native endUS-startUS span, "
+                    "not an independent elapsed-time variable. Equality with Prints - 1 "
+                    "is a common case, not a universal invariant."
                 ),
             },
         },
@@ -145,7 +157,7 @@ def main() -> int:
     if not bool(result["ok"].all()):
         print("ERROR: at least one TICKSEQ_V4 source violates DurationUS/Prints certification.")
         return 1
-    print("OK: all TICKSEQ_V4 sources pass DurationUS == Prints - 1 certification.")
+    print("OK: all TICKSEQ_V4 sources pass DurationUS/Prints compatibility certification.")
     return 0
 
 

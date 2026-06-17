@@ -43,12 +43,13 @@ deja en microsecondes. Ils ne doivent pas etre reconstruits en Python a partir
 de timestamps pandas sans passer par les utilitaires temps NewTRY.
 
 Garde-fou semantique supplementaire : au niveau sequence brute, `DurationUS`
-n'est pas considere comme une variable temporelle independante tant que le
-controle `scripts/tickseq_v4_duration_prints_certify.py` montre
-`DurationUS == Prints - 1` et `DurationUS < 1000 us` sur les sources courantes.
-Dans ce cas, il s'agit d'un span technique intra-ms lie au nombre de prints ;
-la vraie temporalite exploitable reste `GapUsBefore` ou des durees d'objets
-composes reconstruits explicitement.
+n'est pas considere comme une variable temporelle independante. La study C++
+ecrit le span natif `endUS - startUS`; avec `MaxPauseUS = 1`, le controle
+attendu est la compatibilite technique `0 <= DurationUS <= Prints - 1`.
+L'egalite `DurationUS == Prints - 1` est frequente, mais pas universelle
+lorsque plusieurs prints partagent le meme slot temporel. La vraie temporalite
+exploitable reste `GapUsBefore` ou des durees d'objets composes reconstruites
+explicitement.
 
 Les futures analyses Python doivent donc :
 
