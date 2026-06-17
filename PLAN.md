@@ -164,7 +164,19 @@ Output ignore/provenance :
 Resultat `1T2025` : bucket `10-59s` descriptible (`33_481` cas) ;
 bucket `1-9min` sous garde d'effectif (`16` cas).
 
-### 3.8 Branches analytiques [PARKING]
+### 3.8 Session / calendrier [CANON FUTUR - audit initial]
+
+But : preparer un remplacement eventuel du seuil provisoire `>=1h` par une
+logique session / calendrier explicite. Ne pas confondre avec les lentilles
+d'analyse horaire / jour semaine.
+
+Script : `scripts/closure_candidate_calendar_audit.py`.
+Output ignore/provenance : `outputs/closure_candidate_calendar_audit.csv`.
+Resultat : les coupures candidates `>=1h` sont auditables par calendrier ;
+sur fichiers references, beaucoup sont des coupures de meme date avec reprise
+a `18:00`, et pas seulement des overnight / week-end.
+
+### 3.9 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
 Les idees non actives peuvent etre notees dans `IDEES.md` sans devenir des

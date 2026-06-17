@@ -214,3 +214,21 @@ Garder ce fichier bref.
 - La logique session / calendrier est un canon futur possible ; les tranches
   horaires et jours semaine restent une lentille d'analyse tant qu'elles ne
   sont pas justifiees comme canon.
+
+## 2026-06-17 - Audit calendrier des coupures candidates
+
+- `scripts/closure_candidate_calendar_audit.py` lit uniquement
+  `StartDateTime`, `EndDateTime`, `GapUsBefore` pour auditer les coupures
+  candidates `GapUsBefore >= 1h`.
+- Ce script ne definit pas encore un calendrier de session et ne fait aucune
+  analyse par tranche horaire / jour semaine.
+- Controle input : `54_227_841` lignes lues sur fichiers references,
+  `182` coupures candidates au total fichier non deduplique, 0 parse error de
+  borne de coupure.
+- Les coupures candidates commencent toutes a l'heure `18` dans les sources
+  auditees ; les bornes precedentes sont entre heures `9` et `16`.
+- Sur l'agregat fichier non deduplique : `145` coupures de meme date
+  calendrier, `37` avec changement de weekday, `35` traversant un week-end.
+- Conclusion de canon provisoire : le seuil `>=1h` reste une borne de coupure
+  candidate, mais il ne doit pas etre assimile uniquement a overnight /
+  week-end ; une future logique session / calendrier devra distinguer ces cas.
