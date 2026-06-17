@@ -11,6 +11,9 @@ Au demarrage d'une session, lire :
 - `CLAUDE.md` ou `AGENTS.md`
 - `docs/COLLABORATION_NOTES.md`
 
+`IDEES.md` est un parking optionnel : le lire seulement si une piste non active
+est discutee.
+
 Ne pas charger les documents de TRY_plan par defaut. Les consulter seulement
 pour une composante precise.
 
@@ -138,6 +141,8 @@ reste le seuil candidat de coupure avant toute future chaine `G->G`.
 ### 3.8 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.
+Les idees non actives peuvent etre notees dans `IDEES.md` sans devenir des
+branches.
 
 Candidats issus de TRY_plan :
 
