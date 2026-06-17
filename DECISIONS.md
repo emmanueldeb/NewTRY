@@ -262,3 +262,18 @@ Garder ce fichier bref.
   `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
 - Statut : candidat raw `settled` a integrer plus tard au manifest, apres
   politique manifest/hash et controles complets.
+
+## 2026-06-17 - Second candidat raw NQM25
+
+- Export candidat : `C:\SierraChart\Data\TRY_TickSequenceExport_NQM25-CME_TICKSEQ_V4.csv`.
+- Audit leger via `scripts/raw_contract_candidate_audit.py`, sans promotion
+  manifest.
+- Resultats : `19_476_181` lignes, symbole unique `NQM25-CME`,
+  `first_start = 2024-06-20 03:36:56.258000`,
+  `last_end = 2025-06-20 09:29:45.268000`.
+- Prix observes : `PriceMin = 16_460`, `PriceMax = 22_672`, coherents avec
+  un contrat brut non back-adjusted attendu.
+- Controles passes : `DurationUS == Prints - 1`, 0 `GapUsBefore` invalide,
+  `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
+- Statut : second candidat raw `settled`, utile pour verifier que la strategie
+  per-contrat brut se reproduit sur deux echeances consecutives.
