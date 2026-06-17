@@ -145,6 +145,13 @@ Output ignore/provenance : `outputs/g_intraday_first_pass_1t2025.csv`.
 Resultat `1T2025` : `17_368_380` `G` intraday ; `63` coupures `>=1h`
 exclues de `G`.
 
+Descripteur sequence apres `G` intraday :
+`scripts/g_intraday_following_sequence_1t2025.py`.
+Output ignore/provenance :
+`outputs/g_intraday_following_sequence_1t2025.csv`.
+Resultat `1T2025` : bucket `10-59s` descriptible (`33_481` cas) ;
+bucket `1-9min` sous garde d'effectif (`16` cas).
+
 ### 3.8 Branches analytiques [PARKING]
 
 A ouvrir seulement une par une, quand l'utilisateur le demande.

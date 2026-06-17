@@ -182,3 +182,22 @@ Garder ce fichier bref.
   `0` dans `10-59min`.
 - Cette passe reste descriptive : pas de `G->G`, pas de `CutReason`, pas de
   signal metier.
+
+## 2026-06-17 - Sequence apres G intraday
+
+- Premiere question ouverte sur les grands `G` : decrire la sequence qui suit
+  le gap intraday, sans chaine `G->G`.
+- `scripts/g_intraday_following_sequence_1t2025.py` lit `GapUsBefore`,
+  `Prints`, `Volume`, `PriceMin`, `PriceMax`, `TickSize` sur `1T2025`.
+- `CutReason` n'est pas lu dans cette premiere passe, pour eviter toute
+  confusion avec les fermetures.
+- Les coupures `>=1h` et le sub-ms restent exclus du champ `G`.
+- Garde d'effectif : groupes avec `sequence_count < 50` marques
+  `n_below_min`, a ne pas interpreter.
+- Sur `1T2025`, `10-59s` contient `33_481` sequences apres `G` intraday :
+  `Volume/sequence = 1,764`, `Prints/sequence = 1,680`,
+  `R/sequence = 0,259`, `R=0 = 83,96 %`.
+- `1-9min` contient seulement `16` sequences et reste non interpretable ;
+  `10-59min` contient `0` sequence.
+- Ces valeurs decrivent la sequence qui suit le `G`, pas une relation
+  temporelle `G->G`.
