@@ -333,3 +333,27 @@ Garder ce fichier bref.
   `GapUsBefore = -1` une fois, 0 `TickSize` invalide, 0 `CutReason` inconnu.
 - Statut : candidats raw `settled` ES, utiles comme axe comparatif futur pour
   robustesse dynamique, sans ouvrir encore de piste comparative.
+
+## 2026-06-20 - Calendrier de marche (piste) + age_from_prev_contract_end
+
+- Exploration session/calendrier (Phase 5) en lecture seule : audits sur raw
+  per-contrat (NQM25, ESM25) et legacy (sanity check). Scripts d'audit lances
+  hors depot, aucun output versionne.
+- Constat : le seuil `>=1h` n'est pas un bon separateur sur le raw complet
+  (illiquidite back-month massive). Vocabulaire : `G_close` = fermeture
+  programmee (calendrier), `G_open` = silence reel en marche ouvert. La reprise
+  programmee tombe a `18:00 ET` (horodatage Sierra DST-aware America/New_York).
+- Piste (NON canon) : `age_from_prev_contract_end`, `jour 0` = premiere seance
+  apres le dernier jour de cotation du contrat precedent ; numerotation simple
+  (chaque jour sauf samedi). Isole l'illiquidite back-month (age negatif) et le
+  roll-out (age ~>=60, aligne sur le roll CME). Reproduit sur NQ et ES.
+- Decision de conception : ne pas figer de `roll_in/roll_out` ; garder l'age
+  comme axe continu de comparaison entre contrats separes, et porter la finesse
+  calendaire dans un referentiel a part, applique a la carte.
+- Asset cree (piste, versionne) : `reference/MARKET_CALENDAR.md` +
+  `reference/market_calendar_{days,events}.csv`, genere par
+  `scripts/build_market_calendar.py`, couvre 2023-2025. Couche absolue par date
+  (type de jour + evenements horodates), jointe a la demande aux CSV.
+- Peuple : feries/demi-seances (corrobores par audit 2024-2025 ; 2023 par
+  regle), NFP, witching/OPEX, FOMC (a valider). A completer : CPI/PCE/PPI/GDP/
+  ISM/JOLTS/claims... (dates a sourcer). Rien ne devient canon sans entree datee.

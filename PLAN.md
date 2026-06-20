@@ -14,6 +14,10 @@ Au demarrage d'une session, lire :
 `IDEES.md` est un parking optionnel : le lire seulement si une piste non active
 est discutee.
 
+`reference/MARKET_CALENDAR.md` documente un calendrier de marche (piste) : le
+consulter seulement si une analyse utilise le calendrier de marche ou l'age
+contrat (`age_from_prev_contract_end`).
+
 Ne pas charger les documents de TRY_plan par defaut. Les consulter seulement
 pour une composante precise.
 

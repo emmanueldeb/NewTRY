@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-06-20T18:59:19.417618+00:00",
+  "extra": {
+    "coverage": "2023-01-01..2025-12-31",
+    "day_status_values": [
+      "regular",
+      "half_day",
+      "holiday_full_close",
+      "holiday_special",
+      "saturday",
+      "sunday"
+    ],
+    "holiday_session_types_validation": "corrobore par audit CSV 2024-2025; 2023 par regle/convention",
+    "join_key": "date (extraire la partie date du timestamp CSV; CSV en heure New York/ET)",
+    "layer": "1-days",
+    "numbering_note": "counted_day=False uniquement le samedi (numerotation simple 'chaque jour sauf samedi').",
+    "scope": "Calendrier de marche US (ET) pour annoter les CSV a la carte; ne lie pas le canon.",
+    "status": "piste",
+    "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
+  },
+  "git_sha": "fc47f605a9fe1c9b766e18cd42db1195e25fa811",
+  "inputs": [],
+  "numpy": "2.2.0",
+  "pandas": "2.2.3",
+  "python": "C:\\SierraChart\\tools\\newtry_python\\Scripts\\python.exe",
+  "python_version": "3.12.13",
+  "scipy": "1.14.1",
+  "script": "C:\\SierraChart\\AI\\NEWTRY\\scripts\\build_market_calendar.py",
+  "to_datetime_dtype": "datetime64[ns]"
+}
