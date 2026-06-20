@@ -56,7 +56,7 @@ Notes :
 | `frequency` | cadence |
 | `impact` | `high` / `medium` / `low` (pour le filtrage à la carte) |
 | `scheduled` | `True` = date déterministe/connue à l'avance |
-| `a_valider` | `true` = date par règle/liste à recontrôler (ISM, FOMC, Jackson Hole) |
+| `a_valider` | `true` = date non sourcée à recontrôler (actuellement : aucune — tout est règle ou sourcé officiellement) |
 | `source` | `BLS` / `Fed` / `BEA` / `ISM` / `CME` / `rule` / `manual` |
 
 **Peuplé** (dates présentes dans le CSV) :
@@ -66,15 +66,17 @@ Notes :
 | `NFP` | 08:30 | mensuel (1er vendredi) | high | false (règle) |
 | `WITCHING_TRIPLE` | 09:30 | trim. (3e vendredi mar/juin/sep/déc) | high | false (règle) |
 | `OPEX_MONTHLY` | 16:00 | mensuel (3e vendredi) | medium | false (règle) |
-| `FOMC_DECISION` (+SEP trim.) | 14:00 | 8×/an | high | **true** (liste Fed) |
-| `FOMC_PRESSER` | 14:30 | 8×/an | high | **true** (liste Fed) |
-| `ISM_MFG` | 10:00 | mensuel (1er jour ouvré) | high | **true** (règle + fériés) |
-| `ISM_SVC` | 10:00 | mensuel (3e jour ouvré) | high | **true** (règle + fériés) |
-| `JACKSON_HOLE` | ~10:00 | 1×/an (fin août) | high | **true** (3 dates) |
+| `FOMC_DECISION` (+SEP trim.) | 14:00 | 8×/an | high | false (Fed) |
+| `FOMC_PRESSER` | 14:30 | 8×/an | high | false (Fed) |
+| `ISM_MFG` | 10:00 | mensuel | high | false (ISM) |
+| `ISM_SVC` | 10:00 | mensuel | high | false (ISM) |
+| `JACKSON_HOLE` | ~10:00 | 1×/an (fin août) | high | false (Fed/KC Fed) |
 
-Les lignes `a_valider=true` sont à recontrôler avant tout usage critique : ISM
-par règle (le jour ouvré exact peut varier autour des fériés), FOMC et Jackson
-Hole depuis une liste connue (non re-vérifiée à la source).
+Toutes les dates du calendrier sont désormais `a_valider=false` : soit règle
+déterministe (NFP/witching/OPEX), soit sourcées officiellement via les seeds
+*NewTRY B* (BLS/BEA/Census) et *NewTRY C* (Fed/ISM). FOMC/Jackson Hole/ISM ont
+remplacé les dates par règle/mémoire par les vraies dates officielles (la règle
+ISM 1er/3e jour ouvré divergeait, ex. janvier).
 
 **Publications macro à dates variables** (sourcées via la session Codex
 *NewTRY B* depuis les calendriers/archives officiels BLS/BEA/Census ;
@@ -151,10 +153,11 @@ pas comme attribut de jour.
   depuis BLS/BEA/Census (officiel, source unique non re-croisée), `a_valider=false` ;
   seed `macro_release_dates_seed.csv`. Contrôle local : 0 date en week-end, 0 doublon.
 - **NFP / witching / OPEX** : règles déterministes (1er / 3e vendredi), `a_valider=false`.
-- **FOMC / Jackson Hole** : `a_valider=true` — dates issues d'une liste connue
-  (mémoire), **non sourcées officiellement** ; à re-sourcer (ex. via Codex) pour lever le flag.
-- **ISM mfg/svc** : `a_valider=true` — dates **déduites** par règle (1er/3e jour
-  ouvré) ; la vraie date ISM peut diverger.
+- **FOMC / Jackson Hole** : sourcées via Codex *NewTRY C* (Fed / KC Fed, officiel),
+  `a_valider=false` — seed `fed_ism_release_dates_seed.csv` ; les dates FOMC
+  recoupent la liste connue.
+- **ISM mfg/svc** : sourcées via Codex *NewTRY C* (ISM, officiel), `a_valider=false` ;
+  remplacent la règle 1er/3e jour ouvré qui divergeait (ex. janvier).
 
 Tout est régénérable et horodaté via les `.meta.json`. Aucune de ces entrées ne
 devient canon sans validation explicite et une entrée datée dans `DECISIONS.md`.

@@ -363,3 +363,8 @@ Garder ce fichier bref.
   reference/macro_release_dates_seed.csv. Controle: 0 week-end, 0 doublon ;
   irregularites shutdown US 2025 integrees. Restent secondaires
   (JOLTS/ADP/claims/minutes/beige/testimony). Toujours piste.
+- MAJ 2026-06-20 (suite) : FOMC, Jackson Hole, ISM mfg/svc re-sourcees via
+  session Codex "NewTRY C" (Fed/ISM officiels) ->
+  reference/fed_ism_release_dates_seed.csv ; remplacent les dates regle/memoire.
+  PPI passe en impact high. Resultat : 379 evenements, a_valider=false partout
+  (regle deterministe ou source officielle), 0 week-end, 0 doublon. Piste.

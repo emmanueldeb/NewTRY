@@ -1,12 +1,11 @@
 {
-  "created_utc": "2026-06-20T20:43:31.989800+00:00",
+  "created_utc": "2026-06-20T20:59:48.384794+00:00",
   "extra": {
-    "a_valider_note": "a_valider=true reserve aux dates non sourcees officiellement : FOMC et Jackson Hole (liste connue/memoire), ISM (regle 1er/3e jour ouvre). Macro sourcees officiellement (BLS/BEA/Census via NewTRY B) = a_valider=false, mais source unique non re-croisee.",
+    "a_valider_note": "toutes les dates sont a_valider=false : regle deterministe (NFP/witching/OPEX) ou source officielle (seeds NewTRY B/C). Sources officielles uniques, non re-croisees (sauf FOMC, recoupe avec liste connue).",
     "coverage": "2023-01-01..2025-12-31",
     "join_key": "date (extraire la partie date du timestamp CSV; CSV en heure New York/ET)",
     "layer": "2-events",
-    "macro_seed": "macro_release_dates_seed.csv",
-    "macro_shutdown_note": "Shutdown US 2025 : oct-dec 2025 irreguliers (CPI oct non publie ; sept/oct decales ; PCE/Retail combines/repousses). Hors fenetre data (finit sept 2025).",
+    "macro_shutdown_note": "Shutdown US 2025 : oct-dec 2025 macro irreguliers (CPI oct non publie ; decalages PCE/Retail). Hors fenetre data (finit sept 2025).",
     "not_populated_reason": "evenements secondaires/medium, a sourcer ulterieurement si une etude le demande.",
     "not_populated_yet": [
       "JOLTS",
@@ -16,17 +15,17 @@
       "BEIGE_BOOK",
       "FED_TESTIMONY"
     ],
-    "populated_a_valider": [
-      "FOMC_DECISION",
-      "FOMC_PRESSER",
-      "ISM_MFG",
-      "ISM_SVC",
-      "JACKSON_HOLE"
-    ],
-    "populated_reliable": [
+    "rule_based": [
       "NFP",
       "WITCHING_TRIPLE",
-      "OPEX_MONTHLY",
+      "OPEX_MONTHLY"
+    ],
+    "scope": "Calendrier de marche US (ET) pour annoter les CSV a la carte; ne lie pas le canon.",
+    "seeds": [
+      "macro_release_dates_seed.csv",
+      "fed_ism_release_dates_seed.csv"
+    ],
+    "sourced_NewTRY_B_bls_bea_census": [
       "CPI",
       "PPI",
       "PCE",
@@ -36,15 +35,25 @@
       "GDP_3RD",
       "GDP_INITIAL"
     ],
-    "scope": "Calendrier de marche US (ET) pour annoter les CSV a la carte; ne lie pas le canon.",
+    "sourced_NewTRY_C_fed_ism": [
+      "FOMC_DECISION",
+      "FOMC_PRESSER",
+      "JACKSON_HOLE",
+      "ISM_MFG",
+      "ISM_SVC"
+    ],
     "status": "piste",
     "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
   },
-  "git_sha": "af597fa14f96a961a3569ddb8f76285337cf60d8",
+  "git_sha": "94178a2d7d8790fca08b29dd1a98b8819dd8fb32",
   "inputs": [
     {
       "path": "C:\\SierraChart\\AI\\NEWTRY\\reference\\macro_release_dates_seed.csv",
       "sha256": "523e233e6517b1f15581096aaf5f662507bec45a825a2b08340ef6df0f9d82a5"
+    },
+    {
+      "path": "C:\\SierraChart\\AI\\NEWTRY\\reference\\fed_ism_release_dates_seed.csv",
+      "sha256": "a7a7ed5369a689e4e004f05dd6d6151fd4927d53e6bf9c99f5e0f4feb6e1f539"
     }
   ],
   "numpy": "2.2.0",
