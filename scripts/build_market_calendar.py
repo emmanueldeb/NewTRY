@@ -29,6 +29,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REF_DIR = PROJECT_ROOT / "reference"
 DAYS_OUT = REF_DIR / "market_calendar_days.csv"
 EVENTS_OUT = REF_DIR / "market_calendar_events.csv"
+SEED_MACRO = REF_DIR / "macro_release_dates_seed.csv"
 
 START = date(2023, 1, 1)
 END = date(2025, 12, 31)
@@ -103,6 +104,28 @@ EARLY_MONTH_HOLIDAYS = {
     "2023-01-02", "2024-01-01", "2025-01-01",   # New Year (observed)
     "2023-07-04", "2024-07-04", "2025-07-04",   # Independence Day
     "2023-09-04", "2024-09-02", "2025-09-01",   # Labor Day
+}
+
+# Mapping des publications macro sourcees (seed) -> categorie / cadence / impact.
+MACRO_META = {
+    "CPI":          ("Inflation", "monthly",   "high"),
+    "PPI":          ("Inflation", "monthly",   "medium"),
+    "PCE":          ("Inflation", "monthly",   "high"),
+    "RETAIL_SALES": ("Growth",    "monthly",   "high"),
+    "GDP_ADV":      ("Growth",    "quarterly", "high"),
+    "GDP_INITIAL":  ("Growth",    "quarterly", "high"),
+    "GDP_2ND":      ("Growth",    "quarterly", "medium"),
+    "GDP_3RD":      ("Growth",    "quarterly", "medium"),
+}
+MACRO_NAMES = {
+    "CPI": "Consumer Price Index",
+    "PPI": "Producer Price Index",
+    "PCE": "PCE price index (Personal Income & Outlays)",
+    "RETAIL_SALES": "Advance Monthly Retail Sales",
+    "GDP_ADV": "GDP (advance estimate)",
+    "GDP_2ND": "GDP (second estimate)",
+    "GDP_3RD": "GDP (third estimate)",
+    "GDP_INITIAL": "GDP (initial estimate, post-shutdown 2025)",
 }
 
 
@@ -198,8 +221,17 @@ def build_events() -> pd.DataFrame:
             add(iso, "10:00", "JACKSON_HOLE", "Jackson Hole symposium (Chair speech)",
                 "Fed", "1x/year", "high", "Fed", True)
 
+    # Publications macro a dates variables, sourcees (seed NewTRY B / Codex, sources officielles).
+    if SEED_MACRO.exists():
+        seed = pd.read_csv(SEED_MACRO, dtype=str).fillna("")
+        for _, s in seed.iterrows():
+            code = s["event_code"].strip()
+            cat, freq, impact = MACRO_META.get(code, ("Macro", "varies", "medium"))
+            add(s["date"].strip(), s["time_et"].strip(), code, MACRO_NAMES.get(code, code),
+                cat, freq, impact, f'{s["source"].strip()} (NewTRY B, a valider)', True)
+
     df = pd.DataFrame(rows)
-    return df.sort_values(["date", "time_et"]).reset_index(drop=True)
+    return df.sort_values(["date", "time_et", "event_code"]).reset_index(drop=True)
 
 
 def main() -> int:
@@ -224,21 +256,34 @@ def main() -> int:
     )
     write_csv_with_provenance(
         events, EVENTS_OUT, script=Path(__file__).resolve(), project_root=PROJECT_ROOT,
+        inputs=[SEED_MACRO],
         extra={**common_extra, "layer": "2-events",
                "populated_reliable": ["NFP", "WITCHING_TRIPLE", "OPEX_MONTHLY"],
-               "populated_a_valider": ["FOMC_DECISION", "FOMC_PRESSER", "ISM_MFG", "ISM_SVC", "JACKSON_HOLE"],
-               "a_valider_note": "colonne a_valider=true : date par regle (ISM) ou liste connue (FOMC/Jackson Hole), a recontroler.",
-               "not_populated_yet": ["CPI", "PCE", "PPI", "GDP", "RETAIL_SALES", "JOLTS",
-                                     "JOBLESS_CLAIMS", "FOMC_MINUTES", "BEIGE_BOOK", "FED_TESTIMONY"],
-               "not_populated_reason": ("sources autoritatives bloquees a l'acces automatise (BLS/FRED/Census = 403/404 ; "
-                                        "pages tierces = annee courante). Dates a fournir/sourcer manuellement. "
-                                        "Shutdown US 2025 = oct-dec 2025 irreguliers/manquants (hors fenetre data, qui finit sept 2025)."),},
+               "populated_a_valider": ["FOMC_DECISION", "FOMC_PRESSER", "ISM_MFG", "ISM_SVC", "JACKSON_HOLE",
+                                       "CPI", "PPI", "PCE", "RETAIL_SALES",
+                                       "GDP_ADV", "GDP_2ND", "GDP_3RD", "GDP_INITIAL"],
+               "a_valider_note": ("a_valider=true : date par regle (ISM), liste connue (FOMC/Jackson Hole), ou macro "
+                                  "sourcee via seed NewTRY B/Codex (sources officielles BLS/BEA/Census, non re-croisees)."),
+               "macro_seed": SEED_MACRO.name,
+               "macro_shutdown_note": ("Shutdown US 2025 : oct-dec 2025 irreguliers (CPI oct non publie ; sept/oct decales ; "
+                                       "PCE/Retail combines/repousses). Hors fenetre data (finit sept 2025)."),
+               "not_populated_yet": ["JOLTS", "ADP", "JOBLESS_CLAIMS", "FOMC_MINUTES", "BEIGE_BOOK", "FED_TESTIMONY"],
+               "not_populated_reason": "evenements secondaires/medium, a sourcer ulterieurement si une etude le demande."},
     )
 
     print(f"days   : {len(days)} lignes -> {DAYS_OUT}")
     print(days["day_status"].value_counts().to_string())
     print(f"\nevents : {len(events)} lignes -> {EVENTS_OUT}")
     print(events["event_code"].value_counts().to_string())
+
+    ev_dt = pd.to_datetime(events["date"], format="%Y-%m-%d")
+    weekend = events[ev_dt.dt.dayofweek >= 5]
+    dups = events[events.duplicated(subset=["event_code", "date", "time_et"], keep=False)]
+    print(f"\nSANITY: dates en week-end = {len(weekend)} | doublons (code,date,heure) = {len(dups)}")
+    if len(weekend):
+        print(weekend[["date", "event_code"]].to_string(index=False))
+    if len(dups):
+        print(dups[["date", "event_code", "time_et"]].to_string(index=False))
     print("\nOK")
     return 0
 

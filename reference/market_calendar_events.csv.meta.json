@@ -1,18 +1,16 @@
 {
-  "created_utc": "2026-06-20T19:45:48.717524+00:00",
+  "created_utc": "2026-06-20T20:19:11.520286+00:00",
   "extra": {
-    "a_valider_note": "colonne a_valider=true : date par regle (ISM) ou liste connue (FOMC/Jackson Hole), a recontroler.",
+    "a_valider_note": "a_valider=true : date par regle (ISM), liste connue (FOMC/Jackson Hole), ou macro sourcee via seed NewTRY B/Codex (sources officielles BLS/BEA/Census, non re-croisees).",
     "coverage": "2023-01-01..2025-12-31",
     "join_key": "date (extraire la partie date du timestamp CSV; CSV en heure New York/ET)",
     "layer": "2-events",
-    "not_populated_reason": "sources autoritatives bloquees a l'acces automatise (BLS/FRED/Census = 403/404 ; pages tierces = annee courante). Dates a fournir/sourcer manuellement. Shutdown US 2025 = oct-dec 2025 irreguliers/manquants (hors fenetre data, qui finit sept 2025).",
+    "macro_seed": "macro_release_dates_seed.csv",
+    "macro_shutdown_note": "Shutdown US 2025 : oct-dec 2025 irreguliers (CPI oct non publie ; sept/oct decales ; PCE/Retail combines/repousses). Hors fenetre data (finit sept 2025).",
+    "not_populated_reason": "evenements secondaires/medium, a sourcer ulterieurement si une etude le demande.",
     "not_populated_yet": [
-      "CPI",
-      "PCE",
-      "PPI",
-      "GDP",
-      "RETAIL_SALES",
       "JOLTS",
+      "ADP",
       "JOBLESS_CLAIMS",
       "FOMC_MINUTES",
       "BEIGE_BOOK",
@@ -23,7 +21,15 @@
       "FOMC_PRESSER",
       "ISM_MFG",
       "ISM_SVC",
-      "JACKSON_HOLE"
+      "JACKSON_HOLE",
+      "CPI",
+      "PPI",
+      "PCE",
+      "RETAIL_SALES",
+      "GDP_ADV",
+      "GDP_2ND",
+      "GDP_3RD",
+      "GDP_INITIAL"
     ],
     "populated_reliable": [
       "NFP",
@@ -34,8 +40,13 @@
     "status": "piste",
     "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
   },
-  "git_sha": "4b69548a19255f4b20d20fc006b394d3cd0f9f0e",
-  "inputs": [],
+  "git_sha": "e688dd5aad1319302b3a286be9d6223fee3b98c3",
+  "inputs": [
+    {
+      "path": "C:\\SierraChart\\AI\\NEWTRY\\reference\\macro_release_dates_seed.csv",
+      "sha256": "523e233e6517b1f15581096aaf5f662507bec45a825a2b08340ef6df0f9d82a5"
+    }
+  ],
   "numpy": "2.2.0",
   "pandas": "2.2.3",
   "python": "C:\\SierraChart\\tools\\newtry_python\\Scripts\\python.exe",

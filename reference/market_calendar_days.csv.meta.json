@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-06-20T19:45:48.583777+00:00",
+  "created_utc": "2026-06-20T20:19:11.400466+00:00",
   "extra": {
     "coverage": "2023-01-01..2025-12-31",
     "day_status_values": [
@@ -18,7 +18,7 @@
     "status": "piste",
     "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
   },
-  "git_sha": "4b69548a19255f4b20d20fc006b394d3cd0f9f0e",
+  "git_sha": "e688dd5aad1319302b3a286be9d6223fee3b98c3",
   "inputs": [],
   "numpy": "2.2.0",
   "pandas": "2.2.3",

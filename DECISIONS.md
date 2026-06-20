@@ -357,3 +357,9 @@ Garder ce fichier bref.
 - Peuple : feries/demi-seances (corrobores par audit 2024-2025 ; 2023 par
   regle), NFP, witching/OPEX, FOMC (a valider). A completer : CPI/PCE/PPI/GDP/
   ISM/JOLTS/claims... (dates a sourcer). Rien ne devient canon sans entree datee.
+- MAJ 2026-06-20 : ISM mfg/svc ajoutes (regle 1er/3e jour ouvre) ; CPI/PPI/PCE/
+  GDP/Retail Sales sourcees via session Codex "NewTRY B" (BLS/BEA/Census
+  officiels, source unique non re-croisee, a_valider) dans
+  reference/macro_release_dates_seed.csv. Controle: 0 week-end, 0 doublon ;
+  irregularites shutdown US 2025 integrees. Restent secondaires
+  (JOLTS/ADP/claims/minutes/beige/testimony). Toujours piste.

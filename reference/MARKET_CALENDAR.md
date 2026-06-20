@@ -76,36 +76,36 @@ Les lignes `a_valider=true` sont à recontrôler avant tout usage critique : ISM
 par règle (le jour ouvré exact peut varier autour des fériés), FOMC et Jackson
 Hole depuis une liste connue (non re-vérifiée à la source).
 
+**Publications macro à dates variables** (sourcées via la session Codex
+*NewTRY B*, depuis les calendriers/archives officiels ; `a_valider=true`, source
+unique non re-croisée — seed éditable `macro_release_dates_seed.csv`) :
+
+| code | heure ET | cadence | impact |
+|---|---|---|---|
+| `CPI` | 08:30 | mensuel | high |
+| `PCE` | 08:30 | mensuel | high |
+| `PPI` | 08:30 | mensuel | medium |
+| `RETAIL_SALES` | 08:30 | mensuel | high |
+| `GDP_ADV` / `GDP_INITIAL` | 08:30 | trimestriel | high |
+| `GDP_2ND` / `GDP_3RD` | 08:30 | trimestriel | medium |
+
+Irrégularités **shutdown US 2025** intégrées telles quelles (CPI d'octobre 2025
+non publié ; sept./oct. décalés ; PCE/Retail combinés/repoussés ; GDP Q3 2025 =
+`GDP_INITIAL` le 23 déc.). C'est **après la fin des données (sept. 2025)** →
+impact analytique négligeable. Contrôle local : 0 date en week-end, 0 doublon.
+
 > `WITCHING_TRIPLE` tombe sur l'expiry des contrats — c'est la fenêtre du
 > roll-out observée dans l'audit `age_from_prev_contract_end`. Grosse journée
 > **ouverte**, à ne pas confondre avec un congé.
 
-## À compléter — publications à dates variables (NON peuplées)
+## Restent à sourcer (secondaires / medium, non peuplés)
 
-**Blocage de sourcing constaté (2026-06-20)** : les sources autoritatives
-bloquent l'accès automatisé — BLS (`bls.gov`) et FRED (`stlouisfed.org`)
-renvoient `403`, l'URL Census `404`, et les pages tierces consolidées n'exposent
-que l'année courante. Ces dates ne sont donc **pas inventées** : à fournir
-manuellement (copier-coller depuis FRED/BLS dans un navigateur) ou à sourcer
-quand un accès est disponible.
-
-**Shutdown US 2025** : oct.–déc. 2025 perturbés (CPI d'octobre 2025 non publié ;
-PCE/Retail combinés/repoussés en janv.–févr. 2026). C'est **après la fin des
-données (sept. 2025)** → impact analytique négligeable, à signaler pour la seule
-complétude du calendrier 2025-H2.
-
-Catalogue de référence (heures stables ; **dates à fournir/sourcer**) :
+Les événements high sont peuplés (voir plus haut). Restent des indicateurs
+d'impact medium/secondaire, à dater seulement si une étude les réclame (heures
+stables ; dates à sourcer) :
 
 | code | heure ET | cadence | impact | source |
 |---|---|---|---|---|
-| `CPI` | 08:30 | mensuel | high | BLS |
-| `PCE` | 08:30 | mensuel | high | BEA |
-| `PPI` | 08:30 | mensuel | medium→high | BLS |
-| `GDP_ADV` | 08:30 | trimestriel | high | BEA |
-| `GDP_REV` | 08:30 | trimestriel | medium | BEA |
-| `RETAIL_SALES` | 08:30 | mensuel | high | Census |
-| `ISM_MFG` | 10:00 | mensuel (1er j. ouvré) | high | ISM |
-| `ISM_SVC` | 10:00 | mensuel | high | ISM |
 | `JOLTS` | 10:00 | mensuel | medium | BLS |
 | `ADP` | 08:15 | mensuel | medium | ADP |
 | `JOBLESS_CLAIMS` | 08:30 | hebdo (jeudi) | medium | DOL |
@@ -118,7 +118,10 @@ Catalogue de référence (heures stables ; **dates à fournir/sourcer**) :
 | `FOMC_MINUTES` | 14:00 | 8×/an (J+3 sem) | medium | Fed |
 | `BEIGE_BOOK` | 14:00 | 8×/an | medium | Fed |
 | `FED_TESTIMONY` | 10:00 | 2×/an (fév/juil) | high | Fed |
-| `JACKSON_HOLE` | ~10:00 | 1×/an (fin août) | high | Fed |
+
+Note d'accès : BLS/FRED/Census bloquent le WebFetch automatisé (403/404) ; le
+sourcing des macro déjà peuplées a été fait via la session Codex *NewTRY B*
+(accès navigateur). Même voie possible pour ces indicateurs si besoin.
 
 Couche **discrétionnaire** (à annoter à la main, `scheduled=False`, étiquetée
 piste) : annonces tarifaires (ex. 2 avr. 2025), chocs géopolitiques, élections.
@@ -141,9 +144,12 @@ pas comme attribut de jour.
 - **Jours/fériés/demi-séances** : règles US standard ; types de séance
   (13:00 vs 13:15) **corroborés par l'audit CSV 2024-2025** ; **2023 par
   règle/convention** (pas encore de CSV pour cross-check).
-- **FOMC** : dates connues, `source = Fed (a valider)`.
+- **FOMC / Jackson Hole** : dates connues, `a_valider=true`.
 - **NFP / witching / OPEX** : règles déterministes (1er / 3e vendredi).
-- **Publications variables** : non datées ici (voir ci-dessus).
+- **ISM mfg/svc** : règle 1er/3e jour ouvré (fériés fédéraux), `a_valider=true`.
+- **Macro variables (CPI/PPI/PCE/GDP/Retail)** : sourcées via Codex *NewTRY B*
+  depuis BLS/BEA/Census (officiel, source unique non re-croisée), `a_valider=true` ;
+  seed `macro_release_dates_seed.csv`. Contrôle local : 0 date en week-end, 0 doublon.
 
 Tout est régénérable et horodaté via les `.meta.json`. Aucune de ces entrées ne
 devient canon sans validation explicite et une entrée datée dans `DECISIONS.md`.
