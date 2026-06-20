@@ -1,7 +1,7 @@
 {
-  "created_utc": "2026-06-20T20:19:11.520286+00:00",
+  "created_utc": "2026-06-20T20:43:31.989800+00:00",
   "extra": {
-    "a_valider_note": "a_valider=true : date par regle (ISM), liste connue (FOMC/Jackson Hole), ou macro sourcee via seed NewTRY B/Codex (sources officielles BLS/BEA/Census, non re-croisees).",
+    "a_valider_note": "a_valider=true reserve aux dates non sourcees officiellement : FOMC et Jackson Hole (liste connue/memoire), ISM (regle 1er/3e jour ouvre). Macro sourcees officiellement (BLS/BEA/Census via NewTRY B) = a_valider=false, mais source unique non re-croisee.",
     "coverage": "2023-01-01..2025-12-31",
     "join_key": "date (extraire la partie date du timestamp CSV; CSV en heure New York/ET)",
     "layer": "2-events",
@@ -21,7 +21,12 @@
       "FOMC_PRESSER",
       "ISM_MFG",
       "ISM_SVC",
-      "JACKSON_HOLE",
+      "JACKSON_HOLE"
+    ],
+    "populated_reliable": [
+      "NFP",
+      "WITCHING_TRIPLE",
+      "OPEX_MONTHLY",
       "CPI",
       "PPI",
       "PCE",
@@ -31,16 +36,11 @@
       "GDP_3RD",
       "GDP_INITIAL"
     ],
-    "populated_reliable": [
-      "NFP",
-      "WITCHING_TRIPLE",
-      "OPEX_MONTHLY"
-    ],
     "scope": "Calendrier de marche US (ET) pour annoter les CSV a la carte; ne lie pas le canon.",
     "status": "piste",
     "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
   },
-  "git_sha": "e688dd5aad1319302b3a286be9d6223fee3b98c3",
+  "git_sha": "af597fa14f96a961a3569ddb8f76285337cf60d8",
   "inputs": [
     {
       "path": "C:\\SierraChart\\AI\\NEWTRY\\reference\\macro_release_dates_seed.csv",

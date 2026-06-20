@@ -77,22 +77,25 @@ par règle (le jour ouvré exact peut varier autour des fériés), FOMC et Jacks
 Hole depuis une liste connue (non re-vérifiée à la source).
 
 **Publications macro à dates variables** (sourcées via la session Codex
-*NewTRY B*, depuis les calendriers/archives officiels ; `a_valider=true`, source
-unique non re-croisée — seed éditable `macro_release_dates_seed.csv`) :
+*NewTRY B* depuis les calendriers/archives officiels BLS/BEA/Census ;
+`a_valider=false` — source officielle, mais **unique, non re-croisée** —
+seed éditable `macro_release_dates_seed.csv`) :
 
 | code | heure ET | cadence | impact |
 |---|---|---|---|
 | `CPI` | 08:30 | mensuel | high |
 | `PCE` | 08:30 | mensuel | high |
-| `PPI` | 08:30 | mensuel | medium |
+| `PPI` | 08:30 | mensuel | high |
 | `RETAIL_SALES` | 08:30 | mensuel | high |
 | `GDP_ADV` / `GDP_INITIAL` | 08:30 | trimestriel | high |
 | `GDP_2ND` / `GDP_3RD` | 08:30 | trimestriel | medium |
 
 Irrégularités **shutdown US 2025** intégrées telles quelles (CPI d'octobre 2025
 non publié ; sept./oct. décalés ; PCE/Retail combinés/repoussés ; GDP Q3 2025 =
-`GDP_INITIAL` le 23 déc.). C'est **après la fin des données (sept. 2025)** →
-impact analytique négligeable. Contrôle local : 0 date en week-end, 0 doublon.
+`GDP_INITIAL` le 23 déc.) — **après la fin des données (sept. 2025)**, impact
+analytique négligeable. Quelques entrées post-shutdown atypiques à vérifier si un
+jour exploitées (PCE 2025-04-30 et 2025-12-05 à 10:00, `GDP_INITIAL`).
+Contrôle local : 0 date en week-end, 0 doublon.
 
 > `WITCHING_TRIPLE` tombe sur l'expiry des contrats — c'est la fenêtre du
 > roll-out observée dans l'audit `age_from_prev_contract_end`. Grosse journée
@@ -144,12 +147,14 @@ pas comme attribut de jour.
 - **Jours/fériés/demi-séances** : règles US standard ; types de séance
   (13:00 vs 13:15) **corroborés par l'audit CSV 2024-2025** ; **2023 par
   règle/convention** (pas encore de CSV pour cross-check).
-- **FOMC / Jackson Hole** : dates connues, `a_valider=true`.
-- **NFP / witching / OPEX** : règles déterministes (1er / 3e vendredi).
-- **ISM mfg/svc** : règle 1er/3e jour ouvré (fériés fédéraux), `a_valider=true`.
 - **Macro variables (CPI/PPI/PCE/GDP/Retail)** : sourcées via Codex *NewTRY B*
-  depuis BLS/BEA/Census (officiel, source unique non re-croisée), `a_valider=true` ;
+  depuis BLS/BEA/Census (officiel, source unique non re-croisée), `a_valider=false` ;
   seed `macro_release_dates_seed.csv`. Contrôle local : 0 date en week-end, 0 doublon.
+- **NFP / witching / OPEX** : règles déterministes (1er / 3e vendredi), `a_valider=false`.
+- **FOMC / Jackson Hole** : `a_valider=true` — dates issues d'une liste connue
+  (mémoire), **non sourcées officiellement** ; à re-sourcer (ex. via Codex) pour lever le flag.
+- **ISM mfg/svc** : `a_valider=true` — dates **déduites** par règle (1er/3e jour
+  ouvré) ; la vraie date ISM peut diverger.
 
 Tout est régénérable et horodaté via les `.meta.json`. Aucune de ces entrées ne
 devient canon sans validation explicite et une entrée datée dans `DECISIONS.md`.

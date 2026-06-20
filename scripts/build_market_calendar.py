@@ -109,7 +109,7 @@ EARLY_MONTH_HOLIDAYS = {
 # Mapping des publications macro sourcees (seed) -> categorie / cadence / impact.
 MACRO_META = {
     "CPI":          ("Inflation", "monthly",   "high"),
-    "PPI":          ("Inflation", "monthly",   "medium"),
+    "PPI":          ("Inflation", "monthly",   "high"),
     "PCE":          ("Inflation", "monthly",   "high"),
     "RETAIL_SALES": ("Growth",    "monthly",   "high"),
     "GDP_ADV":      ("Growth",    "quarterly", "high"),
@@ -228,7 +228,7 @@ def build_events() -> pd.DataFrame:
             code = s["event_code"].strip()
             cat, freq, impact = MACRO_META.get(code, ("Macro", "varies", "medium"))
             add(s["date"].strip(), s["time_et"].strip(), code, MACRO_NAMES.get(code, code),
-                cat, freq, impact, f'{s["source"].strip()} (NewTRY B, a valider)', True)
+                cat, freq, impact, f'{s["source"].strip()} (NewTRY B, officiel)', False)
 
     df = pd.DataFrame(rows)
     return df.sort_values(["date", "time_et", "event_code"]).reset_index(drop=True)
@@ -258,12 +258,13 @@ def main() -> int:
         events, EVENTS_OUT, script=Path(__file__).resolve(), project_root=PROJECT_ROOT,
         inputs=[SEED_MACRO],
         extra={**common_extra, "layer": "2-events",
-               "populated_reliable": ["NFP", "WITCHING_TRIPLE", "OPEX_MONTHLY"],
-               "populated_a_valider": ["FOMC_DECISION", "FOMC_PRESSER", "ISM_MFG", "ISM_SVC", "JACKSON_HOLE",
-                                       "CPI", "PPI", "PCE", "RETAIL_SALES",
-                                       "GDP_ADV", "GDP_2ND", "GDP_3RD", "GDP_INITIAL"],
-               "a_valider_note": ("a_valider=true : date par regle (ISM), liste connue (FOMC/Jackson Hole), ou macro "
-                                  "sourcee via seed NewTRY B/Codex (sources officielles BLS/BEA/Census, non re-croisees)."),
+               "populated_reliable": ["NFP", "WITCHING_TRIPLE", "OPEX_MONTHLY",
+                                      "CPI", "PPI", "PCE", "RETAIL_SALES",
+                                      "GDP_ADV", "GDP_2ND", "GDP_3RD", "GDP_INITIAL"],
+               "populated_a_valider": ["FOMC_DECISION", "FOMC_PRESSER", "ISM_MFG", "ISM_SVC", "JACKSON_HOLE"],
+               "a_valider_note": ("a_valider=true reserve aux dates non sourcees officiellement : FOMC et Jackson Hole "
+                                  "(liste connue/memoire), ISM (regle 1er/3e jour ouvre). Macro sourcees officiellement "
+                                  "(BLS/BEA/Census via NewTRY B) = a_valider=false, mais source unique non re-croisee."),
                "macro_seed": SEED_MACRO.name,
                "macro_shutdown_note": ("Shutdown US 2025 : oct-dec 2025 irreguliers (CPI oct non publie ; sept/oct decales ; "
                                        "PCE/Retail combines/repousses). Hors fenetre data (finit sept 2025)."),
@@ -280,6 +281,7 @@ def main() -> int:
     weekend = events[ev_dt.dt.dayofweek >= 5]
     dups = events[events.duplicated(subset=["event_code", "date", "time_et"], keep=False)]
     print(f"\nSANITY: dates en week-end = {len(weekend)} | doublons (code,date,heure) = {len(dups)}")
+    print("a_valider:", dict(events["a_valider"].value_counts()))
     if len(weekend):
         print(weekend[["date", "event_code"]].to_string(index=False))
     if len(dups):
