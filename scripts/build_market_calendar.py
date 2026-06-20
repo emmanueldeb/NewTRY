@@ -94,11 +94,35 @@ FOMC_DECISIONS = [
 # Reunions avec Summary of Economic Projections (dot plot) : trimestrielles.
 SEP_MONTHS = {3, 6, 9, 12}
 
+# Jackson Hole symposium (discours du Chair), ~10:00 ET. A VALIDER.
+JACKSON_HOLE = ["2023-08-25", "2024-08-23", "2025-08-22"]
+
+# Feries federaux tombant dans les 3 premiers jours ouvres d'un mois
+# (necessaires pour calculer le 1er/3e jour ouvre ISM). A VALIDER.
+EARLY_MONTH_HOLIDAYS = {
+    "2023-01-02", "2024-01-01", "2025-01-01",   # New Year (observed)
+    "2023-07-04", "2024-07-04", "2025-07-04",   # Independence Day
+    "2023-09-04", "2024-09-02", "2025-09-01",   # Labor Day
+}
+
 
 def nth_friday(year: int, month: int, n: int) -> date:
     d = date(year, month, 1)
     offset = (4 - d.weekday()) % 7  # 4 = Friday
     return date(year, month, 1 + offset + (n - 1) * 7)
+
+
+def nth_business_day(year: int, month: int, n: int) -> date | None:
+    """n-ieme jour ouvre du mois (Lun-Ven hors feries federaux de debut de mois)."""
+    count = 0
+    d = date(year, month, 1)
+    while d.month == month:
+        if d.weekday() < 5 and d.isoformat() not in EARLY_MONTH_HOLIDAYS:
+            count += 1
+            if count == n:
+                return d
+        d += timedelta(days=1)
+    return None
 
 
 def build_days() -> pd.DataFrame:
@@ -130,11 +154,11 @@ def build_days() -> pd.DataFrame:
 def build_events() -> pd.DataFrame:
     rows = []
 
-    def add(d: str, t: str, code: str, name: str, cat: str, freq: str, impact: str, src: str):
+    def add(d, t, code, name, cat, freq, impact, src, a_valider):
         rows.append({
             "date": d, "time_et": t, "event_code": code, "name": name,
             "category": cat, "frequency": freq, "impact": impact,
-            "scheduled": True, "source": src,
+            "scheduled": True, "a_valider": a_valider, "source": src,
         })
 
     for year in range(START.year, END.year + 1):
@@ -142,24 +166,37 @@ def build_events() -> pd.DataFrame:
             nfp = nth_friday(year, month, 1)
             if START <= nfp <= END:
                 add(nfp.isoformat(), "08:30", "NFP", "Employment Situation / Nonfarm Payrolls",
-                    "Labor", "monthly", "high", "BLS")
+                    "Labor", "monthly", "high", "BLS (regle 1er vendredi)", False)
             opex = nth_friday(year, month, 3)
             if START <= opex <= END:
                 if month in SEP_MONTHS:
                     add(opex.isoformat(), "09:30", "WITCHING_TRIPLE",
                         "Triple/Quadruple Witching (index futures+options expiry)",
-                        "Structural", "quarterly", "high", "CME")
+                        "Structural", "quarterly", "high", "CME (regle 3e vendredi)", False)
                 add(opex.isoformat(), "16:00", "OPEX_MONTHLY", "Monthly options expiration",
-                    "Structural", "monthly", "medium", "CME")
+                    "Structural", "monthly", "medium", "CME (regle 3e vendredi)", False)
+            ism_m = nth_business_day(year, month, 1)
+            if ism_m and START <= ism_m <= END:
+                add(ism_m.isoformat(), "10:00", "ISM_MFG", "ISM Manufacturing PMI",
+                    "Growth", "monthly", "high", "rule 1er jour ouvre", True)
+            ism_s = nth_business_day(year, month, 3)
+            if ism_s and START <= ism_s <= END:
+                add(ism_s.isoformat(), "10:00", "ISM_SVC", "ISM Services PMI",
+                    "Growth", "monthly", "high", "rule 3e jour ouvre", True)
 
     for iso in FOMC_DECISIONS:
         if START <= date.fromisoformat(iso) <= END:
             month = int(iso[5:7])
             sep = " (+SEP/dot plot)" if month in SEP_MONTHS else ""
             add(iso, "14:00", "FOMC_DECISION", f"FOMC rate decision + statement{sep}",
-                "Fed", "8x/year", "high", "Fed (a valider)")
+                "Fed", "8x/year", "high", "Fed", True)
             add(iso, "14:30", "FOMC_PRESSER", "FOMC press conference (Chair)",
-                "Fed", "8x/year", "high", "Fed (a valider)")
+                "Fed", "8x/year", "high", "Fed", True)
+
+    for iso in JACKSON_HOLE:
+        if START <= date.fromisoformat(iso) <= END:
+            add(iso, "10:00", "JACKSON_HOLE", "Jackson Hole symposium (Chair speech)",
+                "Fed", "1x/year", "high", "Fed", True)
 
     df = pd.DataFrame(rows)
     return df.sort_values(["date", "time_et"]).reset_index(drop=True)
@@ -188,11 +225,14 @@ def main() -> int:
     write_csv_with_provenance(
         events, EVENTS_OUT, script=Path(__file__).resolve(), project_root=PROJECT_ROOT,
         extra={**common_extra, "layer": "2-events",
-               "populated": ["NFP", "WITCHING_TRIPLE", "OPEX_MONTHLY", "FOMC_DECISION", "FOMC_PRESSER"],
+               "populated_reliable": ["NFP", "WITCHING_TRIPLE", "OPEX_MONTHLY"],
+               "populated_a_valider": ["FOMC_DECISION", "FOMC_PRESSER", "ISM_MFG", "ISM_SVC", "JACKSON_HOLE"],
+               "a_valider_note": "colonne a_valider=true : date par regle (ISM) ou liste connue (FOMC/Jackson Hole), a recontroler.",
                "not_populated_yet": ["CPI", "PCE", "PPI", "GDP", "RETAIL_SALES", "JOLTS",
-                                     "ISM_MFG", "ISM_SVC", "JOBLESS_CLAIMS", "FOMC_MINUTES",
-                                     "BEIGE_BOOK", "FED_TESTIMONY", "JACKSON_HOLE"],
-               "not_populated_reason": "dates variables a sourcer depuis calendriers officiels BLS/BEA/ISM/Fed."},
+                                     "JOBLESS_CLAIMS", "FOMC_MINUTES", "BEIGE_BOOK", "FED_TESTIMONY"],
+               "not_populated_reason": ("sources autoritatives bloquees a l'acces automatise (BLS/FRED/Census = 403/404 ; "
+                                        "pages tierces = annee courante). Dates a fournir/sourcer manuellement. "
+                                        "Shutdown US 2025 = oct-dec 2025 irreguliers/manquants (hors fenetre data, qui finit sept 2025)."),},
     )
 
     print(f"days   : {len(days)} lignes -> {DAYS_OUT}")

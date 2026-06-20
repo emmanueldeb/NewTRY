@@ -1,10 +1,11 @@
 {
-  "created_utc": "2026-06-20T18:59:19.628458+00:00",
+  "created_utc": "2026-06-20T19:45:48.717524+00:00",
   "extra": {
+    "a_valider_note": "colonne a_valider=true : date par regle (ISM) ou liste connue (FOMC/Jackson Hole), a recontroler.",
     "coverage": "2023-01-01..2025-12-31",
     "join_key": "date (extraire la partie date du timestamp CSV; CSV en heure New York/ET)",
     "layer": "2-events",
-    "not_populated_reason": "dates variables a sourcer depuis calendriers officiels BLS/BEA/ISM/Fed.",
+    "not_populated_reason": "sources autoritatives bloquees a l'acces automatise (BLS/FRED/Census = 403/404 ; pages tierces = annee courante). Dates a fournir/sourcer manuellement. Shutdown US 2025 = oct-dec 2025 irreguliers/manquants (hors fenetre data, qui finit sept 2025).",
     "not_populated_yet": [
       "CPI",
       "PCE",
@@ -12,26 +13,28 @@
       "GDP",
       "RETAIL_SALES",
       "JOLTS",
-      "ISM_MFG",
-      "ISM_SVC",
       "JOBLESS_CLAIMS",
       "FOMC_MINUTES",
       "BEIGE_BOOK",
-      "FED_TESTIMONY",
+      "FED_TESTIMONY"
+    ],
+    "populated_a_valider": [
+      "FOMC_DECISION",
+      "FOMC_PRESSER",
+      "ISM_MFG",
+      "ISM_SVC",
       "JACKSON_HOLE"
     ],
-    "populated": [
+    "populated_reliable": [
       "NFP",
       "WITCHING_TRIPLE",
-      "OPEX_MONTHLY",
-      "FOMC_DECISION",
-      "FOMC_PRESSER"
+      "OPEX_MONTHLY"
     ],
     "scope": "Calendrier de marche US (ET) pour annoter les CSV a la carte; ne lie pas le canon.",
     "status": "piste",
     "timezone": "America/New_York (ET), coherent avec l'affichage Sierra (reprise 18:00 ET)."
   },
-  "git_sha": "fc47f605a9fe1c9b766e18cd42db1195e25fa811",
+  "git_sha": "4b69548a19255f4b20d20fc006b394d3cd0f9f0e",
   "inputs": [],
   "numpy": "2.2.0",
   "pandas": "2.2.3",

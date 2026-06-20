@@ -1,133 +1,208 @@
-date,time_et,event_code,name,category,frequency,impact,scheduled,source
-2023-01-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-01-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-02-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2023-02-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-02-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-02-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-03-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-03-17,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2023-03-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-03-22,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2023-03-22,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-04-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-04-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-05-03,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2023-05-03,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-05-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-05-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-06-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-06-14,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2023-06-14,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-06-16,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2023-06-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-07-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-07-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-07-26,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2023-07-26,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-08-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-08-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-09-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-09-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2023-09-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-09-20,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2023-09-20,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-10-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-10-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-11-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2023-11-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-11-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-11-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2023-12-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2023-12-13,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2023-12-13,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2023-12-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2023-12-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-01-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-01-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-01-31,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2024-01-31,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-02-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-02-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-03-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-03-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2024-03-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-03-20,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2024-03-20,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-04-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-04-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-05-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2024-05-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-05-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-05-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-06-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-06-12,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2024-06-12,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-06-21,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2024-06-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-07-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-07-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-07-31,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2024-07-31,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-08-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-08-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-09-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-09-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2024-09-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-09-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2024-09-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-10-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-10-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-11-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-11-07,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2024-11-07,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-11-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2024-12-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2024-12-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2024-12-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2024-12-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2024-12-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-01-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-01-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-01-29,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2025-01-29,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-02-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-02-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-03-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-03-19,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2025-03-19,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-03-21,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2025-03-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-04-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-04-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-05-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-05-07,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2025-05-07,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-05-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-06-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-06-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2025-06-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-06-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2025-06-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-07-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-07-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-07-30,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2025-07-30,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-08-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-08-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-09-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-09-17,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2025-09-17,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-09-19,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2025-09-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-10-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-10-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-10-29,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,Fed (a valider)
-2025-10-29,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-11-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-11-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
-2025-12-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,BLS
-2025-12-10,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,Fed (a valider)
-2025-12-10,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,Fed (a valider)
-2025-12-19,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,CME
-2025-12-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,CME
+date,time_et,event_code,name,category,frequency,impact,scheduled,a_valider,source
+2023-01-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-01-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-01-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-01-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-02-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-02-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2023-02-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-02-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-02-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-02-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-03-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-03-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-03-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-03-17,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2023-03-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-03-22,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2023-03-22,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-04-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-04-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-04-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-04-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-05-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-05-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-05-03,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2023-05-03,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-05-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-05-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-06-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-06-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-06-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-06-14,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2023-06-14,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-06-16,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2023-06-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-07-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-07-06,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-07-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-07-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-07-26,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2023-07-26,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-08-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-08-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-08-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-08-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-08-25,10:00,JACKSON_HOLE,Jackson Hole symposium (Chair speech),Fed,1x/year,high,True,True,Fed
+2023-09-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-09-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-09-06,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-09-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2023-09-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-09-20,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2023-09-20,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-10-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-10-04,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-10-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-10-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-11-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-11-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2023-11-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-11-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-11-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-11-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2023-12-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2023-12-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2023-12-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2023-12-13,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2023-12-13,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2023-12-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2023-12-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-01-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-01-04,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-01-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-01-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-01-31,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2024-01-31,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-02-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-02-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-02-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-02-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-03-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-03-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-03-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-03-15,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2024-03-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-03-20,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2024-03-20,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-04-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-04-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-04-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-04-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-05-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-05-01,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2024-05-01,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-05-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-05-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-05-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-06-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-06-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-06-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-06-12,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2024-06-12,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-06-21,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2024-06-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-07-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-07-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-07-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-07-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-07-31,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2024-07-31,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-08-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-08-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-08-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-08-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-08-23,10:00,JACKSON_HOLE,Jackson Hole symposium (Chair speech),Fed,1x/year,high,True,True,Fed
+2024-09-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-09-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-09-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-09-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2024-09-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-09-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2024-09-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-10-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-10-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-10-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-10-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-11-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-11-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-11-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-11-07,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2024-11-07,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-11-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2024-12-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2024-12-04,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2024-12-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2024-12-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2024-12-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2024-12-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2024-12-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-01-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-01-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-01-06,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-01-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-01-29,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2025-01-29,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-02-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-02-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-02-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-02-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-03-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-03-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-03-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-03-19,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2025-03-19,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-03-21,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2025-03-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-04-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-04-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-04-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-04-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-05-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-05-02,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-05-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-05-07,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2025-05-07,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-05-16,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-06-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-06-04,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-06-06,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-06-18,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2025-06-18,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-06-20,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2025-06-20,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-07-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-07-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-07-04,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-07-18,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-07-30,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2025-07-30,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-08-01,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-08-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-08-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-08-15,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-08-22,10:00,JACKSON_HOLE,Jackson Hole symposium (Chair speech),Fed,1x/year,high,True,True,Fed
+2025-09-02,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-09-04,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-09-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-09-17,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2025-09-17,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-09-19,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2025-09-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-10-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-10-03,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-10-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-10-17,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-10-29,14:00,FOMC_DECISION,FOMC rate decision + statement,Fed,8x/year,high,True,True,Fed
+2025-10-29,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-11-03,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-11-05,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-11-07,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-11-21,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)
+2025-12-01,10:00,ISM_MFG,ISM Manufacturing PMI,Growth,monthly,high,True,True,rule 1er jour ouvre
+2025-12-03,10:00,ISM_SVC,ISM Services PMI,Growth,monthly,high,True,True,rule 3e jour ouvre
+2025-12-05,08:30,NFP,Employment Situation / Nonfarm Payrolls,Labor,monthly,high,True,False,BLS (regle 1er vendredi)
+2025-12-10,14:00,FOMC_DECISION,FOMC rate decision + statement (+SEP/dot plot),Fed,8x/year,high,True,True,Fed
+2025-12-10,14:30,FOMC_PRESSER,FOMC press conference (Chair),Fed,8x/year,high,True,True,Fed
+2025-12-19,09:30,WITCHING_TRIPLE,Triple/Quadruple Witching (index futures+options expiry),Structural,quarterly,high,True,False,CME (regle 3e vendredi)
+2025-12-19,16:00,OPEX_MONTHLY,Monthly options expiration,Structural,monthly,medium,True,False,CME (regle 3e vendredi)

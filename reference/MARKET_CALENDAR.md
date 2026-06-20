@@ -56,17 +56,25 @@ Notes :
 | `frequency` | cadence |
 | `impact` | `high` / `medium` / `low` (pour le filtrage à la carte) |
 | `scheduled` | `True` = date déterministe/connue à l'avance |
-| `source` | `BLS` / `Fed` / `BEA` / `ISM` / `CME` / `manual` |
+| `a_valider` | `true` = date par règle/liste à recontrôler (ISM, FOMC, Jackson Hole) |
+| `source` | `BLS` / `Fed` / `BEA` / `ISM` / `CME` / `rule` / `manual` |
 
-**Peuplé** (déterministe / connu) :
+**Peuplé** (dates présentes dans le CSV) :
 
-| code | heure ET | cadence | impact |
-|---|---|---|---|
-| `NFP` | 08:30 | mensuel (1er vendredi) | high |
-| `FOMC_DECISION` (+SEP trim.) | 14:00 | 8×/an | high |
-| `FOMC_PRESSER` | 14:30 | 8×/an | high |
-| `WITCHING_TRIPLE` | 09:30 | trim. (3e vendredi mar/juin/sep/déc) | high |
-| `OPEX_MONTHLY` | 16:00 | mensuel (3e vendredi) | medium |
+| code | heure ET | cadence | impact | `a_valider` |
+|---|---|---|---|---|
+| `NFP` | 08:30 | mensuel (1er vendredi) | high | false (règle) |
+| `WITCHING_TRIPLE` | 09:30 | trim. (3e vendredi mar/juin/sep/déc) | high | false (règle) |
+| `OPEX_MONTHLY` | 16:00 | mensuel (3e vendredi) | medium | false (règle) |
+| `FOMC_DECISION` (+SEP trim.) | 14:00 | 8×/an | high | **true** (liste Fed) |
+| `FOMC_PRESSER` | 14:30 | 8×/an | high | **true** (liste Fed) |
+| `ISM_MFG` | 10:00 | mensuel (1er jour ouvré) | high | **true** (règle + fériés) |
+| `ISM_SVC` | 10:00 | mensuel (3e jour ouvré) | high | **true** (règle + fériés) |
+| `JACKSON_HOLE` | ~10:00 | 1×/an (fin août) | high | **true** (3 dates) |
+
+Les lignes `a_valider=true` sont à recontrôler avant tout usage critique : ISM
+par règle (le jour ouvré exact peut varier autour des fériés), FOMC et Jackson
+Hole depuis une liste connue (non re-vérifiée à la source).
 
 > `WITCHING_TRIPLE` tombe sur l'expiry des contrats — c'est la fenêtre du
 > roll-out observée dans l'audit `age_from_prev_contract_end`. Grosse journée
@@ -74,8 +82,19 @@ Notes :
 
 ## À compléter — publications à dates variables (NON peuplées)
 
-Catalogue de référence (heures stables ; **dates à sourcer** depuis les
-calendriers officiels BLS/BEA/ISM/Fed, pour éviter d'inventer des dates) :
+**Blocage de sourcing constaté (2026-06-20)** : les sources autoritatives
+bloquent l'accès automatisé — BLS (`bls.gov`) et FRED (`stlouisfed.org`)
+renvoient `403`, l'URL Census `404`, et les pages tierces consolidées n'exposent
+que l'année courante. Ces dates ne sont donc **pas inventées** : à fournir
+manuellement (copier-coller depuis FRED/BLS dans un navigateur) ou à sourcer
+quand un accès est disponible.
+
+**Shutdown US 2025** : oct.–déc. 2025 perturbés (CPI d'octobre 2025 non publié ;
+PCE/Retail combinés/repoussés en janv.–févr. 2026). C'est **après la fin des
+données (sept. 2025)** → impact analytique négligeable, à signaler pour la seule
+complétude du calendrier 2025-H2.
+
+Catalogue de référence (heures stables ; **dates à fournir/sourcer**) :
 
 | code | heure ET | cadence | impact | source |
 |---|---|---|---|---|
