@@ -23,9 +23,25 @@ Clé de jointure : la **partie date** du timestamp CSV (format
 
 ## Fichiers
 
-Générés par [`scripts/build_market_calendar.py`](../scripts/build_market_calendar.py)
-(reproductible, provenance dans les `.meta.json`). Régénérer :
-`runtime/run_python.cmd scripts/build_market_calendar.py`.
+Tout est sous `AI/NewTRY/`, versionné (`reference/` et `scripts/` ; `data/` et
+`outputs/` sont gitignorés et ne contiennent pas le calendrier).
+
+**Flux** : `3 seeds + règles internes` → **générateur** → `2 CSV de sortie (+ .meta.json)`.
+
+- **Générateur** : [`scripts/build_market_calendar.py`](../scripts/build_market_calendar.py).
+  Régénérer : `runtime/run_python.cmd scripts/build_market_calendar.py`.
+- **Seeds** (données sourcées, **éditables**) :
+  - `reference/macro_release_dates_seed.csv` — CPI/PPI/PCE/GDP/Retail (NewTRY B, BLS/BEA/Census) ;
+  - `reference/fed_ism_release_dates_seed.csv` — FOMC/Jackson Hole/ISM (NewTRY C, Fed/ISM) ;
+  - `reference/secondary_release_dates_seed.csv` — testimony/minutes/beige/industrial (Codex, Fed).
+- **Sorties** (générées — **ne pas éditer à la main, elles sont écrasées**) :
+  - `reference/market_calendar_days.csv` (couche 1) + `.meta.json` ;
+  - `reference/market_calendar_events.csv` (couche 2) + `.meta.json`.
+- **Doc** : ce fichier, `reference/MARKET_CALENDAR.md`.
+
+Pour modifier le calendrier : éditer un **seed** (ou le générateur), puis
+**régénérer** — jamais les CSV de sortie directement. Provenance (sources, hash
+des seeds, runtime) dans les `.meta.json`.
 
 ### Couche 1 — `market_calendar_days.csv` (1 ligne / jour calendaire)
 
