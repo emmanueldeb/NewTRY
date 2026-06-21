@@ -56,8 +56,9 @@ elle guide la suite sans remplacer les decisions prises branche par branche.
   prerequis a tout usage de `G`.
 - Phase 4 - Silence reel simple (`GapUsBefore >= 1 ms`) : FAIT pour le canon
   `G` ; pistes `G` en PARKING.
-- Phase 5 - Session / calendrier : CANON FUTUR, remplacement possible du seuil
-  provisoire `>=1h`, a traiter separement des lentilles d'analyse horaire/jour.
+- Phase 5 - Session / calendrier : audit approfondi FAIT ; `>=1h` invalide sur
+  le raw complet ; pistes `G_close`/`G_open` + `age_from_prev_contract_end` et
+  asset calendrier de marche (piste). Logique session reste un canon futur. Voir 3.8.
 - Phase 6 - Objets temporels composes : PARKING, seule voie ou une vraie
   duree `D` peut redevenir legitime.
 - Parking - respiration avancee `G->G`, R0/echappement, autres `.cpp`,
@@ -177,17 +178,30 @@ Output ignore/provenance :
 Resultat `1T2025` : bucket `10-59s` descriptible (`33_481` cas) ;
 bucket `1-9min` sous garde d'effectif (`16` cas).
 
-### 3.8 Session / calendrier [CANON FUTUR - audit initial]
+### 3.8 Session / calendrier [PISTE - audit approfondi + asset]
 
-But : preparer un remplacement eventuel du seuil provisoire `>=1h` par une
-logique session / calendrier explicite. Ne pas confondre avec les lentilles
-d'analyse horaire / jour semaine.
+Logique session / calendrier visee comme canon futur pour remplacer le seuil
+provisoire `>=1h`. Ne pas confondre avec les lentilles horaire / jour semaine.
 
-Script : `scripts/closure_candidate_calendar_audit.py`.
-Output ignore/provenance : `outputs/closure_candidate_calendar_audit.csv`.
-Resultat : les coupures candidates `>=1h` sont auditables par calendrier ;
-sur fichiers references, beaucoup sont des coupures de meme date avec reprise
-a `18:00`, et pas seulement des overnight / week-end.
+Audit lecture seule (HH:MM:SS, split DST, raw per-contrat) : la reprise
+programmee tombe a `18:00 ET` (horodatage Sierra DST-aware America/New_York).
+Sur le raw complet, le seuil `>=1h` s'effondre comme separateur (illiquidite
+back-month massive) ; distinguer `G_close` = fermeture programmee (calendrier)
+de `G_open` = silence reel en marche ouvert.
+
+Piste (NON canon) : `age_from_prev_contract_end` (`jour 0` = premiere seance
+apres le dernier jour de cotation du contrat precedent ; chaque jour sauf
+samedi). Apres nettoyage `G_close`, l'age isole l'illiquidite back-month (age
+negatif), le plateau liquide et le roll-out (age `~>=60`). Reproduit sur NQ et
+ES (NQM25, ESM25). Pas de `roll_in/roll_out` fige : l'age reste un axe continu
+de comparaison entre contrats separes.
+
+Asset abouti (piste, versionne) : calendrier de marche pour annoter les CSV a la
+carte, `2023-2025`, heure ET. Jours / feries / demi-seances + evenements high
+(et une partie des medium), sourcees (BLS/BEA/Census/Fed/ISM) ou par regle,
+`a_valider=false`. Genere par `scripts/build_market_calendar.py` depuis 3 seeds.
+Detail, schemas et completude : `reference/MARKET_CALENDAR.md`. Historique
+date : `DECISIONS.md`.
 
 ### 3.9 Branches analytiques [PARKING]
 
