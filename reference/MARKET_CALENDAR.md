@@ -87,7 +87,7 @@ seed éditable `macro_release_dates_seed.csv`) :
 |---|---|---|---|
 | `CPI` | 08:30 | mensuel | high |
 | `PCE` | 08:30 | mensuel | high |
-| `PPI` | 08:30 | mensuel | high |
+| `PPI` | 08:30 | mensuel | medium |
 | `RETAIL_SALES` | 08:30 | mensuel | high |
 | `GDP_ADV` / `GDP_INITIAL` | 08:30 | trimestriel | high |
 | `GDP_2ND` / `GDP_3RD` | 08:30 | trimestriel | medium |
@@ -103,30 +103,39 @@ Contrôle local : 0 date en week-end, 0 doublon.
 > roll-out observée dans l'audit `age_from_prev_contract_end`. Grosse journée
 > **ouverte**, à ne pas confondre avec un congé.
 
-## Restent à sourcer (secondaires / medium, non peuplés)
+**Secondaires sourcés** (via Codex, sources officielles Fed ; `a_valider=false`,
+seed `secondary_release_dates_seed.csv`) :
 
-Les événements high sont peuplés (voir plus haut). Restent des indicateurs
-d'impact medium/secondaire, à dater seulement si une étude les réclame (heures
-stables ; dates à sourcer) :
+| code | heure ET | cadence | impact |
+|---|---|---|---|
+| `FED_TESTIMONY` | 10:00 | 2×/an (fév + juin/juil, House+Senate) | high |
+| `FOMC_MINUTES` | 14:00 | 8×/an (~J+3 sem) | medium |
+| `BEIGE_BOOK` | 14:00 | 8×/an | medium |
+| `INDUSTRIAL_PROD` | 09:15 | mensuel | medium |
+
+## Restent à sourcer (non peuplés)
+
+Tous les événements **high** sont désormais peuplés. Restent des indicateurs
+d'impact **medium** (plus le hebdomadaire `JOBLESS_CLAIMS`), à dater seulement si
+une étude les réclame. *(D'autres medium SONT déjà peuplés — OPEX, révisions GDP,
+FOMC minutes, beige book, industrial production ; cette liste ne couvre que les
+non peuplés.)*
 
 | code | heure ET | cadence | impact | source |
 |---|---|---|---|---|
 | `JOLTS` | 10:00 | mensuel | medium | BLS |
 | `ADP` | 08:15 | mensuel | medium | ADP |
-| `JOBLESS_CLAIMS` | 08:30 | hebdo (jeudi) | medium | DOL |
 | `ECI` | 08:30 | trimestriel | medium→high | BLS |
 | `DURABLE_GOODS` | 08:30 | mensuel | medium | Census |
-| `INDUSTRIAL_PROD` | 09:15 | mensuel | medium | Fed |
 | `PMI_FLASH` | 09:45 | mensuel | medium | S&P Global |
 | `CONSUMER_CONF` | 10:00 | mensuel | medium | Conf. Board |
-| `MICHIGAN_SENT` | 10:00 | mensuel (prelim+final) | medium | U. Michigan |
-| `FOMC_MINUTES` | 14:00 | 8×/an (J+3 sem) | medium | Fed |
-| `BEIGE_BOOK` | 14:00 | 8×/an | medium | Fed |
-| `FED_TESTIMONY` | 10:00 | 2×/an (fév/juil) | high | Fed |
+| `MICHIGAN_PRELIM` / `MICHIGAN_FINAL` | 10:00 | mensuel (2 publications) | medium | U. Michigan |
+| `JOBLESS_CLAIMS` | 08:30 | hebdo (jeudi) | medium | DOL |
 
-Note d'accès : BLS/FRED/Census bloquent le WebFetch automatisé (403/404) ; le
-sourcing des macro déjà peuplées a été fait via la session Codex *NewTRY B*
-(accès navigateur). Même voie possible pour ces indicateurs si besoin.
+Note d'accès : BLS bloque les requêtes scriptées (403) et les calendriers privés
+historiques (ADP, S&P Global, Conference Board, U. Michigan) ne sont pas
+exploitables automatiquement ici. `JOBLESS_CLAIMS` est hebdomadaire (~156 entrées),
+de faible valeur comme « grosse journée » : à n'intégrer que si besoin.
 
 Couche **discrétionnaire** (à annoter à la main, `scheduled=False`, étiquetée
 piste) : annonces tarifaires (ex. 2 avr. 2025), chocs géopolitiques, élections.
@@ -158,6 +167,9 @@ pas comme attribut de jour.
   recoupent la liste connue.
 - **ISM mfg/svc** : sourcées via Codex *NewTRY C* (ISM, officiel), `a_valider=false` ;
   remplacent la règle 1er/3e jour ouvré qui divergeait (ex. janvier).
+- **FED_TESTIMONY / FOMC_MINUTES / BEIGE_BOOK / INDUSTRIAL_PROD** : sourcées via
+  Codex (Fed, officiel), `a_valider=false` ; seed `secondary_release_dates_seed.csv`.
+  Impacts fixés côté NewTRY (testimony high ; minutes/beige/industrial medium).
 
 Tout est régénérable et horodaté via les `.meta.json`. Aucune de ces entrées ne
 devient canon sans validation explicite et une entrée datée dans `DECISIONS.md`.

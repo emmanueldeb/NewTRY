@@ -10,11 +10,12 @@ Sources des evenements (couche 2) :
 - regles deterministes : NFP (1er vendredi), witching (3e vendredi mar/juin/sep/dec),
   OPEX mensuel (3e vendredi) ;
 - seeds sourcees officiellement (a_valider=false) :
-  * macro_release_dates_seed.csv     (NewTRY B : CPI/PPI/PCE/GDP/Retail, BLS/BEA/Census) ;
-  * fed_ism_release_dates_seed.csv   (NewTRY C : FOMC/Jackson Hole/ISM, Fed/ISM).
+  * macro_release_dates_seed.csv       (NewTRY B : CPI/PPI/PCE/GDP/Retail, BLS/BEA/Census) ;
+  * fed_ism_release_dates_seed.csv     (NewTRY C : FOMC/Jackson Hole/ISM, Fed/ISM) ;
+  * secondary_release_dates_seed.csv   (Codex : FED_TESTIMONY/FOMC_MINUTES/BEIGE_BOOK/INDUSTRIAL_PROD, Fed).
 
-Reste a sourcer (secondaires/medium) : JOLTS, ADP, jobless claims, FOMC minutes,
-beige book, testimony -> voir MARKET_CALENDAR.md.
+Reste a sourcer : JOLTS, ADP, ECI, durable goods, PMI flash, consumer confidence,
+Michigan (prelim/final), jobless claims -> voir MARKET_CALENDAR.md.
 
 Statut : PISTE. Ne lie pas le canon. Lancer via runtime/run_python.cmd.
 """
@@ -33,6 +34,7 @@ DAYS_OUT = REF_DIR / "market_calendar_days.csv"
 EVENTS_OUT = REF_DIR / "market_calendar_events.csv"
 SEED_MACRO = REF_DIR / "macro_release_dates_seed.csv"
 SEED_FED_ISM = REF_DIR / "fed_ism_release_dates_seed.csv"
+SEED_SECONDARY = REF_DIR / "secondary_release_dates_seed.csv"
 
 START = date(2023, 1, 1)
 END = date(2025, 12, 31)
@@ -92,7 +94,7 @@ SEP_MONTHS = {3, 6, 9, 12}
 # Mapping des evenements sourcees (seeds) -> (categorie, cadence, impact, libelle).
 SOURCED_META: dict[str, tuple[str, str, str, str]] = {
     "CPI":           ("Inflation", "monthly",   "high",   "Consumer Price Index"),
-    "PPI":           ("Inflation", "monthly",   "high",   "Producer Price Index"),
+    "PPI":           ("Inflation", "monthly",   "medium", "Producer Price Index"),
     "PCE":           ("Inflation", "monthly",   "high",   "PCE price index (Personal Income & Outlays)"),
     "RETAIL_SALES":  ("Growth",    "monthly",   "high",   "Advance Monthly Retail Sales"),
     "GDP_ADV":       ("Growth",    "quarterly", "high",   "GDP (advance estimate)"),
@@ -104,6 +106,10 @@ SOURCED_META: dict[str, tuple[str, str, str, str]] = {
     "JACKSON_HOLE":  ("Fed",       "1x/year",   "high",   "Jackson Hole symposium (Chair speech)"),
     "ISM_MFG":       ("Growth",    "monthly",   "high",   "ISM Manufacturing PMI"),
     "ISM_SVC":       ("Growth",    "monthly",   "high",   "ISM Services PMI"),
+    "FED_TESTIMONY":   ("Fed",     "2x/year",   "high",   "Semiannual Monetary Policy testimony (Chair)"),
+    "FOMC_MINUTES":    ("Fed",     "8x/year",   "medium", "FOMC minutes"),
+    "BEIGE_BOOK":      ("Fed",     "8x/year",   "medium", "Beige Book"),
+    "INDUSTRIAL_PROD": ("Growth",  "monthly",   "medium", "Industrial Production"),
 }
 
 
@@ -180,6 +186,7 @@ def build_events() -> pd.DataFrame:
     # Evenements sourcees officiellement (seeds) : macro (NewTRY B) + Fed/ISM (NewTRY C).
     load_seed(SEED_MACRO, "NewTRY B")
     load_seed(SEED_FED_ISM, "NewTRY C")
+    load_seed(SEED_SECONDARY, "Codex secondaires")
 
     df = pd.DataFrame(rows)
     return df.sort_values(["date", "time_et", "event_code"]).reset_index(drop=True)
@@ -214,14 +221,17 @@ def main() -> int:
                                                     "GDP_ADV", "GDP_2ND", "GDP_3RD", "GDP_INITIAL"],
                "sourced_NewTRY_C_fed_ism": ["FOMC_DECISION", "FOMC_PRESSER", "JACKSON_HOLE",
                                             "ISM_MFG", "ISM_SVC"],
+               "sourced_secondary_codex": ["FED_TESTIMONY", "FOMC_MINUTES", "BEIGE_BOOK", "INDUSTRIAL_PROD"],
                "a_valider_note": ("toutes les dates sont a_valider=false : regle deterministe (NFP/witching/OPEX) "
-                                  "ou source officielle (seeds NewTRY B/C). Sources officielles uniques, non "
-                                  "re-croisees (sauf FOMC, recoupe avec liste connue)."),
-               "seeds": [SEED_MACRO.name, SEED_FED_ISM.name],
-               "macro_shutdown_note": ("Shutdown US 2025 : oct-dec 2025 macro irreguliers (CPI oct non publie ; "
-                                       "decalages PCE/Retail). Hors fenetre data (finit sept 2025)."),
-               "not_populated_yet": ["JOLTS", "ADP", "JOBLESS_CLAIMS", "FOMC_MINUTES", "BEIGE_BOOK", "FED_TESTIMONY"],
-               "not_populated_reason": "evenements secondaires/medium, a sourcer ulterieurement si une etude le demande."},
+                                  "ou source officielle (seeds). Sources officielles uniques, non re-croisees "
+                                  "(sauf FOMC, recoupe avec liste connue)."),
+               "seeds": [SEED_MACRO.name, SEED_FED_ISM.name, SEED_SECONDARY.name],
+               "shutdown_note": ("Shutdown US 2025 : oct-dec 2025 irreguliers pour les sources gouvernementales "
+                                 "(BLS/Census ; industrial production decale). Hors fenetre data (finit sept 2025)."),
+               "not_populated_yet": ["JOLTS", "ADP", "ECI", "DURABLE_GOODS", "PMI_FLASH",
+                                     "CONSUMER_CONF", "MICHIGAN_PRELIM", "MICHIGAN_FINAL", "JOBLESS_CLAIMS"],
+               "not_populated_reason": ("BLS bloque les requetes scriptees (403) et pas de source privee historique "
+                                        "exploitable ici (ADP/PMI/Conf Board/Michigan) ; a fournir/sourcer."),},
     )
 
     print(f"days   : {len(days)} lignes -> {DAYS_OUT}")

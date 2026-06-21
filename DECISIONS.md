@@ -368,3 +368,9 @@ Garder ce fichier bref.
   reference/fed_ism_release_dates_seed.csv ; remplacent les dates regle/memoire.
   PPI passe en impact high. Resultat : 379 evenements, a_valider=false partout
   (regle deterministe ou source officielle), 0 week-end, 0 doublon. Piste.
+- MAJ 2026-06-20 (suite 2) : ajout FED_TESTIMONY (high), FOMC_MINUTES/BEIGE_BOOK/
+  INDUSTRIAL_PROD (medium) sourcees Codex (Fed) ->
+  reference/secondary_release_dates_seed.csv. PPI ramene en medium. Impacts geres
+  cote NewTRY (pas le confidence Codex). 475 evenements, a_valider=false partout,
+  0 week-end, 0 doublon. Restent non peuples (sources bloquees/privees) : JOLTS,
+  ADP, ECI, durable goods, PMI flash, consumer conf, Michigan, jobless claims.
